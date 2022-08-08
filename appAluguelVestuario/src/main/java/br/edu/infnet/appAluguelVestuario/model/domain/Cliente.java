@@ -3,9 +3,16 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 import java.time.LocalDateTime;
 
 public class Cliente {
-	public String nome;
-	public String cpf;
-	public LocalDateTime dataNascimento;
+	private String nome;
+	private String cpf;
+	private LocalDateTime dataNascimento;
+	
+	public Cliente(String nome, String cpf, LocalDateTime dataNascimento)
+	{
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+	}
 	
 	@Override
 	public String toString() {
