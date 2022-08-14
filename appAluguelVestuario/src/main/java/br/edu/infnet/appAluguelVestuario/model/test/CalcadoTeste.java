@@ -11,7 +11,7 @@ import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
 @Order(4)
 public class CalcadoTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("#Calçados");
+		System.out.println("#Inserindo Calçados");
 		
 		Calcado c1 = new Calcado();
 		c1.setNome("Mocassino");
@@ -20,7 +20,6 @@ public class CalcadoTeste implements ApplicationRunner{
 		c1.setTamanho(38);
 		c1.setTipoDeSalto("Baixo");
 		c1.setCor("Preto");
-		System.out.println(c1);
 		
 		AppImpressao.relatorio("Inclusão do calcado mocassino", c1);
 		
@@ -31,7 +30,6 @@ public class CalcadoTeste implements ApplicationRunner{
 		c2.setTamanho(41);
 		c2.setTipoDeSalto("Baixo");
 		c2.setCor("Preto");
-		System.out.println(c2);
 		
 		AppImpressao.relatorio("Inclusão do calcado bico quadrado", c2);
 		
@@ -41,8 +39,7 @@ public class CalcadoTeste implements ApplicationRunner{
 		c3.setQtdDias(3);
 		c3.setTamanho(34);
 		c3.setTipoDeSalto("15cm");
-		c3.setCor("Prata");
-		System.out.println(c3);		
+		c3.setCor("Prata");		
 		
 		AppImpressao.relatorio("Inclusão do calcado scarpin", c3);
 	}

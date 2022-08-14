@@ -13,7 +13,7 @@ public class RoupaTeste implements ApplicationRunner{
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("#Roupas");
+		System.out.println("#Inserindo Roupas");
 		
 		Roupa r1 = new Roupa();
 		r1.setNome("Paletó Summer");
@@ -22,7 +22,6 @@ public class RoupaTeste implements ApplicationRunner{
 		r1.setTamanho("G");
 		r1.setTipoDeTecido("Poliéster");
 		r1.setParaNoite(false);
-		System.out.println(r1);
 		
 		AppImpressao.relatorio("Inclusão da roupa paletó summer", r1);
 		
@@ -33,7 +32,6 @@ public class RoupaTeste implements ApplicationRunner{
 		r2.setTamanho("M");
 		r2.setTipoDeTecido("Brim");
 		r2.setParaNoite(false);
-		System.out.println(r2);
 		
 		AppImpressao.relatorio("Inclusão da roupa paleto grafite", r2);
 		
@@ -44,7 +42,6 @@ public class RoupaTeste implements ApplicationRunner{
 		r3.setTamanho("P");
 		r3.setTipoDeTecido("Veludo");
 		r3.setParaNoite(true);
-		System.out.println(r3);	
 		
 		AppImpressao.relatorio("Inclusão da roupa vestido floral", r3);
 	}	

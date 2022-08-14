@@ -11,7 +11,7 @@ import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
 @Order(5)
 public class AcessorioTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("#Acessórios");
+		System.out.println("#Inserindo Acessórios");
 		
 		Acessorio a1 = new Acessorio();
 		a1.setNome("Gucci N");
@@ -20,7 +20,6 @@ public class AcessorioTeste implements ApplicationRunner{
 		a1.setDescricao("VX 1300");
 		a1.setTipo("Colar");
 		a1.setMaterial("Prata com brilhantes");
-		System.out.println(a1);
 		
 		AppImpressao.relatorio("Inclusão do acessorio Gucci N", a1);
 		
@@ -31,7 +30,6 @@ public class AcessorioTeste implements ApplicationRunner{
 		a2.setDescricao("AB longo");
 		a2.setTipo("Brincos");
 		a2.setMaterial("Prata");
-		System.out.println(a2);
 		
 		AppImpressao.relatorio("Inclusão do acessorio Ear GG", a2);
 		
@@ -42,7 +40,6 @@ public class AcessorioTeste implements ApplicationRunner{
 		a3.setDescricao("PL 123");
 		a3.setTipo("Pulseira");
 		a3.setMaterial("Prata com brilhantes");
-		System.out.println(a3);	
 		
 		AppImpressao.relatorio("Inclusão do acessorio WST", a3);
 	}

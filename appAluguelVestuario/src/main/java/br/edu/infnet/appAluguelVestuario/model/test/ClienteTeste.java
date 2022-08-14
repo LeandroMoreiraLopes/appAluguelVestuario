@@ -15,7 +15,7 @@ public class ClienteTeste implements ApplicationRunner{
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("#Clientes");
+		System.out.println("#Inserindo Clientes");
 		
 		Cliente c1 = new Cliente("Leandro", "11111111111", LocalDateTime.of(1981, 9, 9, 0, 0));
 		System.out.println(c1);
