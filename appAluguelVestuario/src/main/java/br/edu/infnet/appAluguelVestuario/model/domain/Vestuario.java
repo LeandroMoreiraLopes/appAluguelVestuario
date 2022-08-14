@@ -1,17 +1,19 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
-public abstract class Vestuario {
+import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
+
+public abstract class Vestuario implements IPrinter{
 	private String nome;
 	private double valorDoAluguel;
 	private int qtdDias;
 	
-	public double calcularAluguel()
-	{
-		return valorDoAluguel * qtdDias;
-	}
+	public abstract double calcularAluguel();
 	
-	public abstract void impressao();
-	
+//	public double calcularAluguel()
+//	{
+//		return valorDoAluguel * qtdDias;
+//	}
+
 	@Override
 	public String toString() {
 		return nome + ";" + valorDoAluguel + ";" + qtdDias + ";" + calcularAluguel();				
@@ -40,6 +42,4 @@ public abstract class Vestuario {
 	public void setQtdDias(int qtdDias) {
 		this.qtdDias = qtdDias;
 	}
-	
-	
 }

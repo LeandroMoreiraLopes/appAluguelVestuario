@@ -22,7 +22,7 @@ public class CalcadoTeste implements ApplicationRunner{
 		c1.setCor("Preto");
 		System.out.println(c1);
 		
-		new AppVestuario("Inclusão do calcado mocassino").relatorio(c1);
+		AppImpressao.relatorio("Inclusão do calcado mocassino", c1);
 		
 		Calcado c2 = new Calcado();
 		c2.setNome("Bico quadrado");
@@ -33,7 +33,7 @@ public class CalcadoTeste implements ApplicationRunner{
 		c2.setCor("Preto");
 		System.out.println(c2);
 		
-		new AppVestuario("Inclusão do calcado bico quadrado").relatorio(c2);
+		AppImpressao.relatorio("Inclusão do calcado bico quadrado", c2);
 		
 		Calcado c3 = new Calcado();
 		c3.setNome("Scarpin");
@@ -44,6 +44,6 @@ public class CalcadoTeste implements ApplicationRunner{
 		c3.setCor("Prata");
 		System.out.println(c3);		
 		
-		new AppVestuario("Inclusão do calcado scarpin").relatorio(c3);
+		AppImpressao.relatorio("Inclusão do calcado scarpin", c3);
 	}
 }

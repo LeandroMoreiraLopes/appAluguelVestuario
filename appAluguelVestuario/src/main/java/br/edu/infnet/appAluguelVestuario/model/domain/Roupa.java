@@ -8,7 +8,7 @@ public class Roupa extends Vestuario{
 	@Override
 	public double calcularAluguel() {
 		double multiplicador = paraNoite ? 1.3d : 1d; 
-		return super.calcularAluguel() * multiplicador;
+		return getValorDoAluguel() * getQtdDias() * multiplicador;
 	}
 	
 	@Override

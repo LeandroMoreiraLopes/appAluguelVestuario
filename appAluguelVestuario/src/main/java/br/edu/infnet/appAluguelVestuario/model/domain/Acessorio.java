@@ -6,6 +6,12 @@ public class Acessorio extends Vestuario{
 	private String material;
 	
 	@Override
+	public double calcularAluguel() {
+		
+		return getValorDoAluguel() * getQtdDias();
+	}
+	
+	@Override
 	public String toString() {
 		return descricao + ";" + tipo + ";" + material + ";" + super.toString();
 	}

@@ -2,11 +2,14 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 
 import java.time.LocalDateTime;
 
-public class Aluguel {
+import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
+
+public class Aluguel implements IPrinter{
 	private String itemAlugado;
 	private double valorTotal;
 	private LocalDateTime dataEvento;
 
+	@Override
 	public void impressao() {
 		System.out.println("#Aluguel");
 		System.out.println(this);	

@@ -22,7 +22,7 @@ public class AcessorioTeste implements ApplicationRunner{
 		a1.setMaterial("Prata com brilhantes");
 		System.out.println(a1);
 		
-		new AppVestuario("Inclusão do acessorio Gucci N").relatorio(a1);
+		AppImpressao.relatorio("Inclusão do acessorio Gucci N", a1);
 		
 		Acessorio a2 = new Acessorio();
 		a2.setNome("Ear GG");
@@ -33,7 +33,7 @@ public class AcessorioTeste implements ApplicationRunner{
 		a2.setMaterial("Prata");
 		System.out.println(a2);
 		
-		new AppVestuario("Inclusão do acessorio Ear GG").relatorio(a2);
+		AppImpressao.relatorio("Inclusão do acessorio Ear GG", a2);
 		
 		Acessorio a3 = new Acessorio();
 		a3.setNome("WST");
@@ -44,6 +44,6 @@ public class AcessorioTeste implements ApplicationRunner{
 		a3.setMaterial("Prata com brilhantes");
 		System.out.println(a3);	
 		
-		new AppVestuario("Inclusão do acessorio WST").relatorio(a3);
+		AppImpressao.relatorio("Inclusão do acessorio WST", a3);
 	}
 }

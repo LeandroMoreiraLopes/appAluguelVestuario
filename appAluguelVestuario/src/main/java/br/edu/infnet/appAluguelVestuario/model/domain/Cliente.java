@@ -2,7 +2,9 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 
 import java.time.LocalDateTime;
 
-public class Cliente {
+import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
+
+public class Cliente implements IPrinter{
 	private String nome;
 	private String cpf;
 	private LocalDateTime dataNascimento;
@@ -14,6 +16,7 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	@Override
 	public void impressao() {
 		System.out.println("#Cliente");
 		System.out.println(this);	

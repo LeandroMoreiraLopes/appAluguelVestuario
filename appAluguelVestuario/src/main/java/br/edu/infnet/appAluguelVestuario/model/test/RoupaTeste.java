@@ -24,7 +24,7 @@ public class RoupaTeste implements ApplicationRunner{
 		r1.setParaNoite(false);
 		System.out.println(r1);
 		
-		new AppVestuario("Inclusão da roupa paletó summer").relatorio(r1);
+		AppImpressao.relatorio("Inclusão da roupa paletó summer", r1);
 		
 		Roupa r2 = new Roupa();
 		r2.setNome("Paletó Grafite");
@@ -35,7 +35,7 @@ public class RoupaTeste implements ApplicationRunner{
 		r2.setParaNoite(false);
 		System.out.println(r2);
 		
-		new AppVestuario("Inclusão da roupa paleto grafite").relatorio(r2);
+		AppImpressao.relatorio("Inclusão da roupa paleto grafite", r2);
 		
 		Roupa r3 = new Roupa();
 		r3.setNome("Vestido Floral");
@@ -46,6 +46,6 @@ public class RoupaTeste implements ApplicationRunner{
 		r3.setParaNoite(true);
 		System.out.println(r3);	
 		
-		new AppVestuario("Inclusão da roupa vestido floral").relatorio(r3);
+		AppImpressao.relatorio("Inclusão da roupa vestido floral", r3);
 	}	
 }
