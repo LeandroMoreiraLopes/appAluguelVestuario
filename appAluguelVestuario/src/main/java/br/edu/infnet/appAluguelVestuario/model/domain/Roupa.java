@@ -6,8 +6,14 @@ public class Roupa extends Vestuario{
 	private boolean paraNoite;
 	
 	@Override
+	public double calcularAluguel() {
+		double multiplicador = paraNoite ? 1.3d : 1d; 
+		return super.calcularAluguel() * multiplicador;
+	}
+	
+	@Override
 	public String toString() {
-		return tamanho + ";" + tipoDeTecido + ";" + paraNoite + ";" + getNome() + ";" + getValorDoAluguel() + ";" + isReservado();
+		return tamanho + ";" + tipoDeTecido + ";" + paraNoite + ";" + super.toString();
 	}
 
 	public String getTamanho() {
@@ -32,5 +38,11 @@ public class Roupa extends Vestuario{
 
 	public void setParaNoite(boolean paraNoite) {
 		this.paraNoite = paraNoite;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Roupa");
+		System.out.println(this);		
 	}
 }

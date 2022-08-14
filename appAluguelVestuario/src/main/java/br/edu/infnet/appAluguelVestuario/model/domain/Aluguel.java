@@ -6,6 +6,11 @@ public class Aluguel {
 	private String itemAlugado;
 	private double valorTotal;
 	private LocalDateTime dataEvento;
+
+	public void impressao() {
+		System.out.println("#Aluguel");
+		System.out.println(this);	
+	}
 	
 	@Override
 	public String toString() {

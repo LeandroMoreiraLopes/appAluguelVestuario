@@ -7,7 +7,7 @@ public class Acessorio extends Vestuario{
 	
 	@Override
 	public String toString() {
-		return descricao + ";" + tipo + ";" + material + ";" + getNome() + ";" + getValorDoAluguel() + ";" + isReservado();
+		return descricao + ";" + tipo + ";" + material + ";" + super.toString();
 	}
 
 	public String getDescricao() {
@@ -32,5 +32,11 @@ public class Acessorio extends Vestuario{
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Acessorio");
+		System.out.println(this);		
 	}
 }

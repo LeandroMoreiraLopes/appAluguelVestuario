@@ -1,13 +1,20 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
-public class Vestuario {
+public abstract class Vestuario {
 	private String nome;
 	private double valorDoAluguel;
-	private boolean reservado;
+	private int qtdDias;
+	
+	public double calcularAluguel()
+	{
+		return valorDoAluguel * qtdDias;
+	}
+	
+	public abstract void impressao();
 	
 	@Override
 	public String toString() {
-		return nome + ";" + valorDoAluguel + ";" + reservado;				
+		return nome + ";" + valorDoAluguel + ";" + qtdDias + ";" + calcularAluguel();				
 	}
 
 	public String getNome() {
@@ -26,12 +33,12 @@ public class Vestuario {
 		this.valorDoAluguel = valorDoAluguel;
 	}
 
-	public boolean isReservado() {
-		return reservado;
+	public int getQtdDias() {
+		return qtdDias;
 	}
 
-	public void setReservado(boolean reservado) {
-		this.reservado = reservado;
+	public void setQtdDias(int qtdDias) {
+		this.qtdDias = qtdDias;
 	}
 	
 	

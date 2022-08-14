@@ -6,8 +6,15 @@ public class Calcado extends Vestuario {
 	private String cor;
 	
 	@Override
+	public double calcularAluguel() {
+		double multiplicador = tamanho < 35 ? 0.8d : 1d;
+		
+		return getValorDoAluguel() * multiplicador;
+	}
+	
+	@Override
 	public String toString() {
-		return tamanho + ";" + tipoDeSalto + ";" + cor  + ";" + getNome() + ";" + getValorDoAluguel() + ";" + isReservado();
+		return tamanho + ";" + tipoDeSalto + ";" + cor  + ";" + super.toString();
 	}
 
 	public int getTamanho() {
@@ -32,5 +39,11 @@ public class Calcado extends Vestuario {
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#Calcado");
+		System.out.println(this);			
 	}
 }

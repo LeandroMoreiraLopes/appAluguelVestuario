@@ -14,6 +14,12 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 	
+	public void impressao() {
+		System.out.println("#Cliente");
+		System.out.println(this);	
+	}
+	
+	
 	@Override
 	public String toString() {
 		return nome + ";" + cpf + ";" + dataNascimento;
