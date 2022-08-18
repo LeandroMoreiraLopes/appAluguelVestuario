@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appAluguelVestuario.model.controller.RoupaController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Roupa;
 
 @Component
@@ -22,8 +23,7 @@ public class RoupaTeste implements ApplicationRunner{
 		r1.setTamanho("G");
 		r1.setTipoDeTecido("Poliéster");
 		r1.setParaNoite(false);
-		
-		AppImpressao.relatorio("Inclusão da roupa paletó summer", r1);
+		RoupaController.incluir(r1);
 		
 		Roupa r2 = new Roupa();
 		r2.setNome("Paletó Grafite");
@@ -32,8 +32,7 @@ public class RoupaTeste implements ApplicationRunner{
 		r2.setTamanho("M");
 		r2.setTipoDeTecido("Brim");
 		r2.setParaNoite(false);
-		
-		AppImpressao.relatorio("Inclusão da roupa paleto grafite", r2);
+		RoupaController.incluir(r2);
 		
 		Roupa r3 = new Roupa();
 		r3.setNome("Vestido Floral");
@@ -42,7 +41,6 @@ public class RoupaTeste implements ApplicationRunner{
 		r3.setTamanho("P");
 		r3.setTipoDeTecido("Veludo");
 		r3.setParaNoite(true);
-		
-		AppImpressao.relatorio("Inclusão da roupa vestido floral", r3);
+		RoupaController.incluir(r3);
 	}	
 }

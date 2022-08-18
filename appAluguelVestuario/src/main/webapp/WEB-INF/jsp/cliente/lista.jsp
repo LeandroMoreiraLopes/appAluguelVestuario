@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,27 +56,22 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nome</th>
 					<th>CPF</th>
 					<th>Data de nascimento</th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="c" items="${listagem}">
 				<tr class="success">
-					<td>Leandro</td>
-					<td>11111111111</td>
-					<td>09-09-1981</td>
+					<td>${c.id}</td>
+					<td>${c.nome}</td>
+					<td>${c.cpf}</td>
+					<td>${c.dataNascimento}</td>
+					<td><a href="/cliente/${c.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Gabriel</td>
-					<td>22222222222</td>
-					<td>01/10/2007</td>
-				</tr>
-				<tr class="warning">
-					<td>Enilda</td>
-					<td>33333333333</td>
-					<td>11-10-1948</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

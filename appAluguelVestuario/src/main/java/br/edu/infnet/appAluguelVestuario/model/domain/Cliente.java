@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
 
 public class Cliente implements IPrinter{
+	private int id;
 	private String nome;
 	private String cpf;
 	private LocalDateTime dataNascimento;
@@ -28,4 +29,23 @@ public class Cliente implements IPrinter{
 		return nome + ";" + cpf + ";" + dataNascimento;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public LocalDateTime getDataNascimento() {
+		return dataNascimento;
+	}
 }

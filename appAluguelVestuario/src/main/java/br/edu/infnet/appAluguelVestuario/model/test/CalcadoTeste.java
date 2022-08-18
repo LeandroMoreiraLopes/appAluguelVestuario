@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appAluguelVestuario.model.controller.CalcadoController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
 
 @Component
@@ -20,8 +21,7 @@ public class CalcadoTeste implements ApplicationRunner{
 		c1.setTamanho(38);
 		c1.setTipoDeSalto("Baixo");
 		c1.setCor("Preto");
-		
-		AppImpressao.relatorio("Inclusão do calcado mocassino", c1);
+		CalcadoController.incluir(c1);
 		
 		Calcado c2 = new Calcado();
 		c2.setNome("Bico quadrado");
@@ -30,8 +30,7 @@ public class CalcadoTeste implements ApplicationRunner{
 		c2.setTamanho(41);
 		c2.setTipoDeSalto("Baixo");
 		c2.setCor("Preto");
-		
-		AppImpressao.relatorio("Inclusão do calcado bico quadrado", c2);
+		CalcadoController.incluir(c2);
 		
 		Calcado c3 = new Calcado();
 		c3.setNome("Scarpin");
@@ -40,7 +39,6 @@ public class CalcadoTeste implements ApplicationRunner{
 		c3.setTamanho(34);
 		c3.setTipoDeSalto("15cm");
 		c3.setCor("Prata");		
-		
-		AppImpressao.relatorio("Inclusão do calcado scarpin", c3);
+		CalcadoController.incluir(c3);
 	}
 }

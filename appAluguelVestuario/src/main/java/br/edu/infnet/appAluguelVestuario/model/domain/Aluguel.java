@@ -6,6 +6,7 @@ import java.util.Set;
 import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
 
 public class Aluguel implements IPrinter{
+	private int id;
 	private String itemAlugado;
 	private double valorTotal;
 	private LocalDateTime dataEvento;
@@ -57,5 +58,13 @@ public class Aluguel implements IPrinter{
 
 	public void setListaVestuario(Set<Vestuario> listaVestuario) {
 		this.listaVestuario = listaVestuario;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

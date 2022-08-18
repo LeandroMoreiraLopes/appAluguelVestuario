@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,39 +56,29 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nome</th>
 					<th>Valor do aluguel</th>
 					<th>Quantidade de dias</th>
 					<th>Tamanho</th>
 					<th>Tipo de tecido</th>
 					<th>Roupa para noite</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="r" items="${listagem}">
 				<tr class="success">
-					<td>Paletó Summer</td>
-					<td>R$ 1.600,00</td>
-					<td>2</td>
-					<td>G</td>
-					<td>Poliéster</td>
-					<td>Sim</td>
+					<td>${r.id}</td>
+					<td>${r.nome}</td>
+					<td>${r.valorDoAluguel}</td>
+					<td>${r.qtdDias}</td>
+					<td>${r.tamanho}</td>
+					<td>${r.tipoDeTecido}</td>
+					<td>${r.paraNoite}</td>
+					<td><a href="/roupa/${r.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Paletó Grafite</td>
-					<td>R$ 650,00</td>
-					<td>3</td>
-					<td>M</td>
-					<td>Brim</td>
-					<td>Não</td>
-				</tr>
-				<tr class="warning">
-					<td>Vestido Floral</td>
-					<td>R$ 500,00</td>
-					<td>1</td>
-					<td>P</td>
-					<td>Veludo</td>
-					<td>Sim</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

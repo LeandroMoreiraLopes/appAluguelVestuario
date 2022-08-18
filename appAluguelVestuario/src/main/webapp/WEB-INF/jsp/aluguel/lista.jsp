@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,27 +56,22 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Item alugado</th>
 					<th>Valor total</th>
 					<th>Data do Evento</th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="a" items="${listagem}">
 				<tr class="success">
-					<td>Paletó summer e mocassino</td>
-					<td>R$ 1.700,00</td>
-					<td>12-11-2022</td>
+					<td>${a.id}</td>
+					<td>${a.itemAlugado}</td>
+					<td>${a.valorTotal}</td>
+					<td>${a.dataEvento}</td>
+					<td><a href="/aluguel/${a.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Paletó cinza e bico quadrado</td>
-					<td>R$ 740,00</td>
-					<td>12-11-2022</td>
-				</tr>
-				<tr class="warning">
-					<td>Vestido floral, scarpin e acessórios</td>
-					<td>R$ 690,00</td>
-					<td>12-11-2022</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

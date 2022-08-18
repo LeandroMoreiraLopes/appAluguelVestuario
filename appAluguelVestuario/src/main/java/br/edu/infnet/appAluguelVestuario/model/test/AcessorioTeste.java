@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appAluguelVestuario.model.controller.AcessorioController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
 
 @Component
@@ -20,8 +21,7 @@ public class AcessorioTeste implements ApplicationRunner{
 		a1.setDescricao("VX 1300");
 		a1.setTipo("Colar");
 		a1.setMaterial("Prata com brilhantes");
-		
-		AppImpressao.relatorio("Inclusão do acessorio Gucci N", a1);
+		AcessorioController.incluir(a1);
 		
 		Acessorio a2 = new Acessorio();
 		a2.setNome("Ear GG");
@@ -30,8 +30,7 @@ public class AcessorioTeste implements ApplicationRunner{
 		a2.setDescricao("AB longo");
 		a2.setTipo("Brincos");
 		a2.setMaterial("Prata");
-		
-		AppImpressao.relatorio("Inclusão do acessorio Ear GG", a2);
+		AcessorioController.incluir(a2);
 		
 		Acessorio a3 = new Acessorio();
 		a3.setNome("WST");
@@ -40,7 +39,6 @@ public class AcessorioTeste implements ApplicationRunner{
 		a3.setDescricao("PL 123");
 		a3.setTipo("Pulseira");
 		a3.setMaterial("Prata com brilhantes");
-		
-		AppImpressao.relatorio("Inclusão do acessorio WST", a3);
+		AcessorioController.incluir(a3);
 	}
 }

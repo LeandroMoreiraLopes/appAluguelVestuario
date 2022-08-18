@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,6 +56,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nome</th>
 					<th>Valor do aluguel</th>
 					<th>Quantidade de dias</th>
@@ -64,30 +66,18 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="c" items="${listagem}">
 				<tr class="success">
-					<td>Mocassino</td>
-					<td>R$ 100,00</td>
-					<td>1</td>
-					<td>38</td>
-					<td>Baixo</td>
-					<td>Preto</td>
+					<td>${c.id}</td>
+					<td>${c.nome}</td>
+					<td>${c.valorDoAluguel}</td>
+					<td>${c.qtdDias}</td>
+					<td>${c.tamanho}</td>
+					<td>${c.tipoDeSalto}</td>
+					<td>${c.cor}</td>
+					<td><a href="/calcado/${c.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Bico Quadrado</td>
-					<td>R$ 90,00</td>
-					<td>2</td>
-					<td>41</td>
-					<td>Baixo</td>
-					<td>Preto</td>
-				</tr>
-				<tr class="warning">
-					<td>Scarpin</td>
-					<td>R$ 120,00</td>
-					<td>3</td>
-					<td>34</td>
-					<td>15cm</td>
-					<td>Prata</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

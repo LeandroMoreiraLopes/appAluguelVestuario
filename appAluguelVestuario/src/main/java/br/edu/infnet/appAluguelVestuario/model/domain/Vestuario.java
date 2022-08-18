@@ -3,6 +3,7 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
 
 public abstract class Vestuario implements IPrinter{
+	private int id;	
 	private String nome;
 	private double valorDoAluguel;
 	private int qtdDias;
@@ -41,6 +42,14 @@ public abstract class Vestuario implements IPrinter{
 
 	public void setQtdDias(int qtdDias) {
 		this.qtdDias = qtdDias;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appAluguelVestuario.model.controller.AluguelController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
 import br.edu.infnet.appAluguelVestuario.model.domain.Aluguel;
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
@@ -68,8 +69,7 @@ public class AluguelTeste implements ApplicationRunner{
 		a1.setValorTotal(1600.00);
 		a1.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
 		a1.setListaVestuario(listaVestiario1);
-		
-		AppImpressao.relatorio("Inclusão do aluguel 1", a1);
+		AluguelController.incluir(a1);
 		
 		//--------------------------
 		
@@ -84,11 +84,10 @@ public class AluguelTeste implements ApplicationRunner{
 		a2.setValorTotal(650.00);
 		a2.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
 		a2.setListaVestuario(listaVestiario2);
-		
-		AppImpressao.relatorio("Inclusão do aluguel 2", a2);
+		AluguelController.incluir(a2);
 		
 		//--------------------------
-		
+				
 		Set<Vestuario> listaVestiario3 = new HashSet<Vestuario>();		
 		listaVestiario3.add(r1);
 		
@@ -99,7 +98,6 @@ public class AluguelTeste implements ApplicationRunner{
 		a3.setValorTotal(500.00);
 		a3.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
 		a3.setListaVestuario(listaVestiario3);
-		
-		AppImpressao.relatorio("Inclusão do aluguel 3", a3);
+		AluguelController.incluir(a3);
 	}
 }

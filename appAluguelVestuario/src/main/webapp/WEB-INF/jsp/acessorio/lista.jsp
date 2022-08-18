@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -55,6 +56,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nome</th>
 					<th>Valor do aluguel</th>
 					<th>Quantidade de dias</th>
@@ -64,30 +66,18 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="a" items="${listagem}">
 				<tr class="success">
-					<td>Gucci N</td>
-					<td>R$ 30,00</td>
-					<td>3</td>
-					<td>VX 1300</td>
-					<td>Colar</td>
-					<td>Prata com brilhantes</td>
+					<td>${a.id}</td>
+					<td>${a.nome}</td>
+					<td>${a.valorDoAluguel}</td>
+					<td>${a.qtdDias}</td>
+					<td>${a.descricao}</td>
+					<td>${a.tipo}</td>
+					<td>${a.material}</td>
+					<td><a href="/acessorio/${a.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Ear GG</td>
-					<td>R$ 20,00</td>
-					<td>2</td>
-					<td>AB longo</td>
-					<td>Brincos</td>
-					<td>Prata</td>
-				</tr>
-				<tr class="warning">
-					<td>WST</td>
-					<td>R$ 20,00</td>
-					<td>1</td>
-					<td>PL 123</td>
-					<td>Pulseira</td>
-					<td>Prata com brilhantes</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
