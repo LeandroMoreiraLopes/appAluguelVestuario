@@ -1,12 +1,19 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import br.edu.infnet.appAluguelVestuario.model.exceptions.QtdDiasInvalidoException;
+
 public class Roupa extends Vestuario{
 	private String tamanho;
 	private String tipoDeTecido;
 	private boolean paraNoite;
 	
 	@Override
-	public double calcularAluguel() {
+	public double calcularAluguel() throws QtdDiasInvalidoException {
+		
+		if (getQtdDias() <= 0){
+			throw new QtdDiasInvalidoException("Impossível calcular com a quantidade de dias ("+getQtdDias()+") com valor menor ou igual a zero");
+		}
+		
 		double multiplicador = paraNoite ? 1.3d : 1d; 
 		return getValorDoAluguel() * getQtdDias() * multiplicador;
 	}

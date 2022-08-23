@@ -16,12 +16,15 @@ import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
 import br.edu.infnet.appAluguelVestuario.model.domain.Cliente;
 import br.edu.infnet.appAluguelVestuario.model.domain.Roupa;
 import br.edu.infnet.appAluguelVestuario.model.domain.Vestuario;
+import br.edu.infnet.appAluguelVestuario.model.exceptions.AluguelSemVestuarioException;
+import br.edu.infnet.appAluguelVestuario.model.exceptions.ClienteNuloException;
+import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 
 @Component
 @Order(1)
 public class AluguelTeste implements ApplicationRunner{
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
+	public void run(ApplicationArguments args) {
 		System.out.println("#Inserindo Alugueis");
 		
 		Roupa r1 = new Roupa();
@@ -55,49 +58,107 @@ public class AluguelTeste implements ApplicationRunner{
 		
 		//--------------------------
 		
-		Set<Vestuario> listaVestiario1 = new HashSet<Vestuario>();		
-		listaVestiario1.add(r1);
-		listaVestiario1.add(ca1);
-		listaVestiario1.add(ac1);
-		listaVestiario1.add(ac1);
-		listaVestiario1.add(ac2);
-		
-		Cliente c1 = new Cliente("Leandro", "11111111111", LocalDateTime.of(1981, 9, 9, 0, 0));
-				
-		Aluguel a1 = new Aluguel(c1);
-		a1.setItemAlugado("Paletó Spring");
-		a1.setValorTotal(1600.00);
-		a1.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-		a1.setListaVestuario(listaVestiario1);
-		AluguelController.incluir(a1);
-		
-		//--------------------------
-		
-		Set<Vestuario> listaVestiario2 = new HashSet<Vestuario>();		
-		listaVestiario2.add(r1);
-		listaVestiario2.add(ac1);
-		
-		Cliente c2 = new Cliente("Gabriel", "22222222222", LocalDateTime.of(2007, 10, 01, 0, 0));
-		
-		Aluguel a2 = new Aluguel(c2);
-		a2.setItemAlugado("Paletó Black");
-		a2.setValorTotal(650.00);
-		a2.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-		a2.setListaVestuario(listaVestiario2);
-		AluguelController.incluir(a2);
+		try {
+			Set<Vestuario> listaVestiario1 = new HashSet<Vestuario>();		
+			listaVestiario1.add(r1);
+			listaVestiario1.add(ca1);
+			listaVestiario1.add(ac1);
+			listaVestiario1.add(ac1);
+			listaVestiario1.add(ac2);
+			
+			Cliente c1 = new Cliente("Leandro", "11111111111", LocalDateTime.of(1981, 9, 9, 0, 0));
+			
+			Aluguel a1 = new Aluguel(c1, listaVestiario1);
+			a1.setItemAlugado("Paletó Spring");
+			a1.setValorTotal(1600.00);
+			a1.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a1.setListaVestuario(listaVestiario1);
+			AluguelController.incluir(a1);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
 		
 		//--------------------------
-				
-		Set<Vestuario> listaVestiario3 = new HashSet<Vestuario>();		
-		listaVestiario3.add(r1);
 		
-		Cliente c3 = new Cliente("Enilda", "33333333333", LocalDateTime.of(1948, 10, 11, 0, 0));
+		try {
+			Set<Vestuario> listaVestiario2 = new HashSet<Vestuario>();		
+			listaVestiario2.add(r1);
+			listaVestiario2.add(ac1);
+			
+			Cliente c2 = new Cliente("Gabriel", "22222222222", LocalDateTime.of(2007, 10, 01, 0, 0));
+			
+			Aluguel a2 = new Aluguel(c2, listaVestiario2);
+			a2.setItemAlugado("Paletó Black");
+			a2.setValorTotal(650.00);
+			a2.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a2.setListaVestuario(listaVestiario2);
+			AluguelController.incluir(a2);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
 		
-		Aluguel a3 = new Aluguel(c3);
-		a3.setItemAlugado("Vestido Floral");
-		a3.setValorTotal(500.00);
-		a3.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-		a3.setListaVestuario(listaVestiario3);
-		AluguelController.incluir(a3);
+		//--------------------------
+
+		try {
+			Set<Vestuario> listaVestiario3 = new HashSet<Vestuario>();		
+			listaVestiario3.add(r1);
+			
+			Cliente c3 = new Cliente("Enilda", "33333333333", LocalDateTime.of(1948, 10, 11, 0, 0));
+			
+			Aluguel a3 = new Aluguel(c3, listaVestiario3);
+			a3.setItemAlugado("Vestido Floral");
+			a3.setValorTotal(500.00);
+			a3.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a3.setListaVestuario(listaVestiario3);
+			AluguelController.incluir(a3);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
+		
+		try {
+			Set<Vestuario> listaVestiario4 = new HashSet<Vestuario>();		
+			listaVestiario4.add(r1);
+			
+			Cliente c4 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
+			
+			Aluguel a4 = new Aluguel(null, listaVestiario4);
+			a4.setItemAlugado("Vestido Floral");
+			a4.setValorTotal(500.00);
+			a4.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a3.setListaVestuario(listaVestiario3);
+			AluguelController.incluir(a4);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
+		
+		try {
+			Set<Vestuario> listaVestiario5 = new HashSet<Vestuario>();		
+			
+			Cliente c5 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
+			
+			Aluguel a5 = new Aluguel(c5, listaVestiario5);
+			a5.setItemAlugado("Vestido Floral");
+			a5.setValorTotal(500.00);
+			a5.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a3.setListaVestuario(listaVestiario3);
+			AluguelController.incluir(a5);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
+		
+		try {
+			Set<Vestuario> listaVestiario6 = null;		
+			
+			Cliente c6 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
+			
+			Aluguel a6 = new Aluguel(c6, listaVestiario6);
+			a6.setItemAlugado("Vestido Floral");
+			a6.setValorTotal(500.00);
+			a6.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
+			//a3.setListaVestuario(listaVestiario3);
+			AluguelController.incluir(a6);
+		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		}
 	}
 }

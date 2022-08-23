@@ -1,13 +1,24 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import br.edu.infnet.appAluguelVestuario.model.exceptions.DescricaoInvalidaException;
+
 public class Acessorio extends Vestuario{
 	private String descricao;
 	private String tipo;
 	private String material;
 	
 	@Override
-	public double calcularAluguel() {
+	public double calcularAluguel() throws DescricaoInvalidaException {
 		
+		if (descricao == null) {
+			throw new DescricaoInvalidaException("Impossivel calcular valor de acessório com descrição nula");
+		}
+		
+		else if (descricao.isEmpty())
+		{
+			throw new DescricaoInvalidaException("Impossivel calcular valor de acessório sem descrição");
+		}
+					
 		return getValorDoAluguel() * getQtdDias();
 	}
 	

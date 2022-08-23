@@ -1,12 +1,18 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import br.edu.infnet.appAluguelVestuario.model.exceptions.TamanhoInvalidoException;
+
 public class Calcado extends Vestuario {
 	private int tamanho;
 	private String tipoDeSalto;
 	private String cor;
 	
 	@Override
-	public double calcularAluguel() {
+	public double calcularAluguel() throws TamanhoInvalidoException {
+		if (tamanho < 22) {
+			throw new TamanhoInvalidoException("Impossivel preencher calçado com tamanho menor que 22");
+		}
+		
 		double multiplicador = tamanho < 35 ? 0.8d : 1d;
 		
 		return getValorDoAluguel() * multiplicador;
