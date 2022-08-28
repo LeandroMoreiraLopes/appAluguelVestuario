@@ -60,6 +60,8 @@
 					<th>Item alugado</th>
 					<th>Valor total</th>
 					<th>Data do Evento</th>
+					<th>Cliente</th>
+					<th>Quantidade de vestuários</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,6 +71,8 @@
 					<td>${a.itemAlugado}</td>
 					<td>${a.valorTotal}</td>
 					<td>${a.dataEvento}</td>
+					<td>${a.cliente.nome}</td>
+					<td>${a.listaVestuario.size()}</td>
 					<td><a href="/aluguel/${a.id}/excluir">excluir</a></td>
 				</tr>
 				</c:forEach>

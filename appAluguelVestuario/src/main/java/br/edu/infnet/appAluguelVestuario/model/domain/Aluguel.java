@@ -8,7 +8,7 @@ import br.edu.infnet.appAluguelVestuario.model.exceptions.ClienteNuloException;
 import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
 
 public class Aluguel implements IPrinter{
-	private int id;
+	private Integer id;
 	private String itemAlugado;
 	private double valorTotal;
 	private LocalDateTime dataEvento;
@@ -70,6 +70,10 @@ public class Aluguel implements IPrinter{
 	
 	public Set<Vestuario> getListaVestuario() {
 		return listaVestuario;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
 	}
 
 //	public void setListaVestuario(Set<Vestuario> listaVestuario) {

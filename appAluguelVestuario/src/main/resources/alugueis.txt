@@ -1,0 +1,3 @@
+Aluguel 1;Paleto Spring; 1600.00;2022/11/12;Leandro;11111111111;1981/09/09;
+Aluguel 2;Paleto Black; 650.00;2022/11/12;Gabriel;22222222222;2007/10/01;
+Aluguel 3;Vestido Floral; 500.00;2022/11/12;Enilda;33333333333;1948/10/11;

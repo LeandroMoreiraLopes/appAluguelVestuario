@@ -1,5 +1,9 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -58,107 +62,59 @@ public class AluguelTeste implements ApplicationRunner{
 		
 		//--------------------------
 		
-		try {
-			Set<Vestuario> listaVestiario1 = new HashSet<Vestuario>();		
-			listaVestiario1.add(r1);
-			listaVestiario1.add(ca1);
-			listaVestiario1.add(ac1);
-			listaVestiario1.add(ac1);
-			listaVestiario1.add(ac2);
-			
-			Cliente c1 = new Cliente("Leandro", "11111111111", LocalDateTime.of(1981, 9, 9, 0, 0));
-			
-			Aluguel a1 = new Aluguel(c1, listaVestiario1);
-			a1.setItemAlugado("Paletó Spring");
-			a1.setValorTotal(1600.00);
-			a1.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a1.setListaVestuario(listaVestiario1);
-			AluguelController.incluir(a1);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
-		}
-		
-		//--------------------------
+		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
+		String arq = "alugueis.txt";
 		
 		try {
-			Set<Vestuario> listaVestiario2 = new HashSet<Vestuario>();		
-			listaVestiario2.add(r1);
-			listaVestiario2.add(ac1);
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha = leitura.readLine();
+				while(linha!= null)
+				{
+					try {
+						
+						String[] campos = linha.split(";");
+						String[] dataEvento = campos[3].split("/");
+						String[] dataNasc = campos[6].split("/");
+						
+						Set<Vestuario> listaVestiario1 = new HashSet<Vestuario>();		
+						listaVestiario1.add(r1);
+						listaVestiario1.add(ca1);
+						listaVestiario1.add(ac1);
+						listaVestiario1.add(ac2);
+						
+						Cliente c1 = new Cliente(campos[4], campos[5], LocalDateTime.of(Integer.parseInt(dataNasc[0]), 
+																							Integer.parseInt(dataNasc[1]),
+																							Integer.parseInt(dataNasc[2]),
+																							0, 0));
+						
+						Aluguel a1 = new Aluguel(c1, listaVestiario1);
+						a1.setItemAlugado(campos[1]);
+						a1.setValorTotal(Double.parseDouble(campos[2]));
+						a1.setDataEvento(LocalDateTime.of(Integer.parseInt(dataEvento[0]), 
+															Integer.parseInt(dataEvento[1]),
+															Integer.parseInt(dataEvento[2]),
+															19, 0));
+						AluguelController.incluir(a1);
+					} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
+						System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+					}
+				
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe");
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo");
+			}
 			
-			Cliente c2 = new Cliente("Gabriel", "22222222222", LocalDateTime.of(2007, 10, 01, 0, 0));
-			
-			Aluguel a2 = new Aluguel(c2, listaVestiario2);
-			a2.setItemAlugado("Paletó Black");
-			a2.setValorTotal(650.00);
-			a2.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a2.setListaVestuario(listaVestiario2);
-			AluguelController.incluir(a2);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
-		}
-		
-		//--------------------------
-
-		try {
-			Set<Vestuario> listaVestiario3 = new HashSet<Vestuario>();		
-			listaVestiario3.add(r1);
-			
-			Cliente c3 = new Cliente("Enilda", "33333333333", LocalDateTime.of(1948, 10, 11, 0, 0));
-			
-			Aluguel a3 = new Aluguel(c3, listaVestiario3);
-			a3.setItemAlugado("Vestido Floral");
-			a3.setValorTotal(500.00);
-			a3.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a3.setListaVestuario(listaVestiario3);
-			AluguelController.incluir(a3);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
-		}
-		
-		try {
-			Set<Vestuario> listaVestiario4 = new HashSet<Vestuario>();		
-			listaVestiario4.add(r1);
-			
-			Cliente c4 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
-			
-			Aluguel a4 = new Aluguel(null, listaVestiario4);
-			a4.setItemAlugado("Vestido Floral");
-			a4.setValorTotal(500.00);
-			a4.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a3.setListaVestuario(listaVestiario3);
-			AluguelController.incluir(a4);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
-		}
-		
-		try {
-			Set<Vestuario> listaVestiario5 = new HashSet<Vestuario>();		
-			
-			Cliente c5 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
-			
-			Aluguel a5 = new Aluguel(c5, listaVestiario5);
-			a5.setItemAlugado("Vestido Floral");
-			a5.setValorTotal(500.00);
-			a5.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a3.setListaVestuario(listaVestiario3);
-			AluguelController.incluir(a5);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
-		}
-		
-		try {
-			Set<Vestuario> listaVestiario6 = null;		
-			
-			Cliente c6 = new Cliente("John", "12345678900", LocalDateTime.of(1948, 10, 11, 0, 0));
-			
-			Aluguel a6 = new Aluguel(c6, listaVestiario6);
-			a6.setItemAlugado("Vestido Floral");
-			a6.setValorTotal(500.00);
-			a6.setDataEvento(LocalDateTime.of(2022, 11, 12, 19, 0));
-			//a3.setListaVestuario(listaVestiario3);
-			AluguelController.incluir(a6);
-		} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
-			System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
+		} finally {
+			System.out.println("Arquivo lido");
 		}
 	}
 }
