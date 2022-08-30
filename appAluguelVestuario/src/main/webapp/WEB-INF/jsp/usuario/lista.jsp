@@ -49,33 +49,21 @@
 	</nav>
 
 	<div class="container">
-		<h2>Projeto de Gestão de Vestuário</h2>
-		<p>Aluguel de roupas, calçados e acessórios</p>
-		
-		<h3>Classe: Roupa</h3>
+		<h3>Cadastramento de usuários</h3>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Nome</th>
-					<th>Valor do aluguel</th>
-					<th>Quantidade de dias</th>
-					<th>Tamanho</th>
-					<th>Tipo de tecido</th>
-					<th>Roupa para noite</th>
+					<th>E-mail</th>
+					<th>Senha</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="r" items="${listagem}">
+				<c:forEach var="u" items="${listagem}">
 				<tr class="success">
-					<td>${r.id}</td>
-					<td>${r.nome}</td>
-					<td>${r.valorDoAluguel}</td>
-					<td>${r.qtdDias}</td>
-					<td>${r.tamanho}</td>
-					<td>${r.tipoDeTecido}</td>
-					<td>${r.paraNoite}</td>
-					<td><a href="/roupa/${r.id}/excluir">excluir</a></td>
+					<td>${u.nome}</td>
+					<td>${u.email}</td>
+					<td>${u.senha}</td>
 				</tr>
 				</c:forEach>
 			</tbody>

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -25,23 +26,47 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="/">Home</a>
 	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/roupa/lista">Roupa</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/calcado/lista">Calçado</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/acessorio/lista">Acessório</a>
-	        </li>  
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicos</a>
-	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="/aluguel/lista">Aluguel</a></li>
-	            <li><a class="dropdown-item" href="/vestuario/lista">Vestuario</a></li>
-	            <li><a class="dropdown-item" href="/cliente/lista">Cliente</a></li>
-	          </ul>
-	        </li>
+	        
+	        <c:if test="${not empty user}">
+		        <li class="nav-item">
+		          <a class="nav-link" href="/usuario/lista">Usuário</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/roupa/lista">Roupa</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/calcado/lista">Calçado</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/acessorio/lista">Acessório</a>
+		        </li>  
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicos</a>
+		          <ul class="dropdown-menu">
+		            <li><a class="dropdown-item" href="/aluguel/lista">Aluguel</a></li>
+		            <li><a class="dropdown-item" href="/vestuario/lista">Vestuario</a></li>
+		            <li><a class="dropdown-item" href="/cliente/lista">Cliente</a></li>
+		          </ul>
+	        	</li>
+        	</c:if>
+	      
+	      </ul>
+	      
+	      <ul class="navbar-nav justify-content-end ms-auto">
+	        <c:if test="${empty user}">
+		        <li class="nav-item">
+		          <a class="nav-link" href="">Signup</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/login">Login</a>
+		        </li>
+		    </c:if>
+		        
+	        <c:if test="${not empty user}">
+		        <li class="nav-item">
+		          <a class="nav-link" href="/logout">Logout ${user}</a>
+		        </li>
+	        </c:if>
 	      </ul>
 	    </div>
 	  </div>

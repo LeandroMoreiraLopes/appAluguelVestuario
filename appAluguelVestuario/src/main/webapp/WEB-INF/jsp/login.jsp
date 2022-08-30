@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -48,38 +47,20 @@
 	  </div>
 	</nav>
 
-	<div class="container">
-		<h2>Projeto de Gestão de Vestuário</h2>
-		<p>Aluguel de roupas, calçados e acessórios</p>
-		
-		<h3>Classe: Roupa</h3>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Valor do aluguel</th>
-					<th>Quantidade de dias</th>
-					<th>Tamanho</th>
-					<th>Tipo de tecido</th>
-					<th>Roupa para noite</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="r" items="${listagem}">
-				<tr class="success">
-					<td>${r.id}</td>
-					<td>${r.nome}</td>
-					<td>${r.valorDoAluguel}</td>
-					<td>${r.qtdDias}</td>
-					<td>${r.tamanho}</td>
-					<td>${r.tipoDeTecido}</td>
-					<td>${r.paraNoite}</td>
-					<td><a href="/roupa/${r.id}/excluir">excluir</a></td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<div class="container mt-3">
+	  <h2>Login</h2>
+	  <form action="/login" method="post">
+	    <div class="mb-3 mt-3">
+	      <label for="email">Email:</label>
+	      <input type="email" class="form-control" id="email" placeholder="Entre com o seu email" name="email">
+	    </div>
+	    
+	    <div class="mb-3">
+	      <label for="pwd">Password:</label>
+	      <input type="password" class="form-control" id="pwd" placeholder="Entre com sua senha" name="senha">
+	    </div>
+	    <button type="submit" class="btn btn-primary">Login</button>
+	  </form>
 	</div>
 
 </body>
