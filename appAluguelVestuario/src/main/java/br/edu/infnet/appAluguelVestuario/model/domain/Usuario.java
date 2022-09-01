@@ -9,7 +9,7 @@ public class Usuario implements IPrinter{
 	
 	@Override
 	public void impressao() {
-		System.out.println("#Cliente");
+		System.out.println("#Usuario");
 		System.out.println(this);	
 	}
 	

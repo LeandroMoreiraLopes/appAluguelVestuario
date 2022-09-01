@@ -15,38 +15,7 @@
 	</head>
 	<body>
 	
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#">AppAluguelDeRoupas</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-	      <ul class="navbar-nav">
-	        <li class="nav-item">
-	          <a class="nav-link" href="/">Home</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/roupa/lista">Roupa</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/calcado/lista">Calçado</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/acessorio/lista">Acessório</a>
-	        </li>  
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicos</a>
-	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="/aluguel/lista">Aluguel</a></li>
-	            <li><a class="dropdown-item" href="/vestuario/lista">Vestuario</a></li>
-	            <li><a class="dropdown-item" href="/cliente/lista">Cliente</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
+	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container">
 		<h3>Cadastramento de usuários</h3>
@@ -64,6 +33,7 @@
 					<td>${u.nome}</td>
 					<td>${u.email}</td>
 					<td>${u.senha}</td>
+					<td><a href="/usuario/${u.email}/excluir">excluir</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
