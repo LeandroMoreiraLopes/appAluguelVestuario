@@ -1,4 +1,4 @@
-package br.edu.infnet.appAluguelVestuario.model.controller;
+package br.edu.infnet.appAluguelVestuario.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

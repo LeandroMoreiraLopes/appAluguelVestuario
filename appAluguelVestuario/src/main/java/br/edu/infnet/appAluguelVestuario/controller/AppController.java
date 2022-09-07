@@ -1,16 +1,26 @@
-package br.edu.infnet.appAluguelVestuario.model.controller;
+package br.edu.infnet.appAluguelVestuario.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
+import br.edu.infnet.appAluguelVestuario.model.service.UsuarioService;
 
+@SessionAttributes("user")
 @Controller
 public class AppController {
 
+	@Autowired
+	UsuarioService usuarioService;
+	
 	@GetMapping(value = "/")
 	public String telaHome() {
 		return "home";
@@ -24,11 +34,11 @@ public class AppController {
 	@PostMapping(value = "/login")
 	public String login(Model model, @RequestParam String email, @RequestParam String senha) {
 		
-		Usuario usuario = UsuarioController.validar(email, senha);
+		Usuario usuario = usuarioService.validar(email, senha);
 		
 		if(usuario != null) {
 			
-			model.addAttribute("user", usuario.getNome());
+			model.addAttribute("user", usuario);
 			
 			return "home";
 		}
@@ -37,8 +47,12 @@ public class AppController {
 	}
 	
 	@GetMapping(value = "/logout")
-	public String logout(Model model) {
-		model.addAttribute("user", "");
+	public String logout(HttpSession session, SessionStatus status) {
+		
+		//model.addAttribute("user", "");
+		
+		status.setComplete();
+		session.removeAttribute("user");
 		
 		return "redirect:/";
 	}

@@ -1,18 +1,18 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import br.edu.infnet.appAluguelVestuario.interfaces.IPrinter;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.DescricaoInvalidaException;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.QtdDiasInvalidoException;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.TamanhoInvalidoException;
-import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
 
 public abstract class Vestuario implements IPrinter{
-	private int id;	
+	private int id;
 	private String nome;
 	private double valorDoAluguel;
 	private int qtdDias;
-	
+
 	public abstract double calcularAluguel() throws QtdDiasInvalidoException, TamanhoInvalidoException, DescricaoInvalidaException;
-	
+
 //	public double calcularAluguel()
 //	{
 //		return valorDoAluguel * qtdDias;
@@ -20,7 +20,7 @@ public abstract class Vestuario implements IPrinter{
 
 	@Override
 	public String toString() {
-		return nome + ";" + valorDoAluguel + ";" + qtdDias;				
+		return nome + ";" + valorDoAluguel + ";" + qtdDias;
 	}
 
 	public String getNome() {
@@ -46,7 +46,7 @@ public abstract class Vestuario implements IPrinter{
 	public void setQtdDias(int qtdDias) {
 		this.qtdDias = qtdDias;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -80,5 +80,5 @@ public abstract class Vestuario implements IPrinter{
 		return true;
 	}
 
-	
+
 }

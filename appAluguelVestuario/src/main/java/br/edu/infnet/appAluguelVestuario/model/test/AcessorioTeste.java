@@ -1,17 +1,22 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appAluguelVestuario.model.controller.AcessorioController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.DescricaoInvalidaException;
+import br.edu.infnet.appAluguelVestuario.model.service.AcessorioService;
 
 @Component
 @Order(5)
 public class AcessorioTeste implements ApplicationRunner{
+	
+	@Autowired
+	private AcessorioService acessorioService;
+	
 	public void run(ApplicationArguments args) {
 		System.out.println("#Inserindo Acessórios");
 				
@@ -24,7 +29,7 @@ public class AcessorioTeste implements ApplicationRunner{
 			a1.setTipo("Colar");
 			a1.setMaterial("Prata com brilhantes");
 			System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
-			AcessorioController.incluir(a1);
+			acessorioService.incluir(a1);
 		} catch (DescricaoInvalidaException e) {
 			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
 		}
@@ -38,7 +43,7 @@ public class AcessorioTeste implements ApplicationRunner{
 			a2.setTipo("Brincos");
 			a2.setMaterial("Prata");
 			System.out.println("Cálculo do aluguel: " + a2.calcularAluguel());
-			AcessorioController.incluir(a2);
+			acessorioService.incluir(a2);
 		} catch (DescricaoInvalidaException e) {
 			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
 		}
@@ -52,7 +57,7 @@ public class AcessorioTeste implements ApplicationRunner{
 			a3.setTipo("Pulseira");
 			a3.setMaterial("Prata com brilhantes");
 			System.out.println("Cálculo do aluguel: " + a3.calcularAluguel());
-			AcessorioController.incluir(a3);
+			acessorioService.incluir(a3);
 		} catch (DescricaoInvalidaException e) {
 			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
 		}	
@@ -66,7 +71,7 @@ public class AcessorioTeste implements ApplicationRunner{
 			a4.setTipo("Gargantilha");
 			a4.setMaterial("Couro Trançado");
 			System.out.println("Cálculo do aluguel: " + a4.calcularAluguel());
-			AcessorioController.incluir(a4);
+			acessorioService.incluir(a4);
 		} catch (DescricaoInvalidaException e) {
 			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
 		}
@@ -80,7 +85,7 @@ public class AcessorioTeste implements ApplicationRunner{
 			a5.setTipo("Tornoseleira");
 			a5.setMaterial("Couro");
 			System.out.println("Cálculo do aluguel: " + a5.calcularAluguel());
-			AcessorioController.incluir(a5);
+			acessorioService.incluir(a5);
 		} catch (DescricaoInvalidaException e) {
 			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
 		}

@@ -1,18 +1,22 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appAluguelVestuario.model.controller.RoupaController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Roupa;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.QtdDiasInvalidoException;
+import br.edu.infnet.appAluguelVestuario.model.service.RoupaService;
 
 @Component
 @Order(3)
 public class RoupaTeste implements ApplicationRunner {
 
+	@Autowired
+	private RoupaService roupaService;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		System.out.println("#Inserindo Roupas");
@@ -26,7 +30,7 @@ public class RoupaTeste implements ApplicationRunner {
 			r1.setTipoDeTecido("Poliéster");
 			r1.setParaNoite(false);
 			System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
-			RoupaController.incluir(r1);
+			roupaService.incluir(r1);
 		} catch (QtdDiasInvalidoException e) {
 			System.out.println("[ERROR - ROUPA] " + e.getMessage());
 		}
@@ -40,7 +44,7 @@ public class RoupaTeste implements ApplicationRunner {
 			r2.setTipoDeTecido("Brim");
 			r2.setParaNoite(false);
 			System.out.println("Cálculo de aluguel: " + r2.calcularAluguel());
-			RoupaController.incluir(r2);
+			roupaService.incluir(r2);
 		} catch (QtdDiasInvalidoException e) {
 			System.out.println("[ERROR - ROUPA] " + e.getMessage());
 		}
@@ -54,7 +58,7 @@ public class RoupaTeste implements ApplicationRunner {
 			r3.setTipoDeTecido("Veludo");
 			r3.setParaNoite(true);
 			System.out.println("Cálculo de aluguel: " + r3.calcularAluguel());
-			RoupaController.incluir(r3);
+			roupaService.incluir(r3);
 		} catch (QtdDiasInvalidoException e) {
 			System.out.println("[ERROR - ROUPA] " + e.getMessage());
 		}
@@ -68,7 +72,7 @@ public class RoupaTeste implements ApplicationRunner {
 			r4.setTipoDeTecido("Veludo");
 			r4.setParaNoite(true);
 			System.out.println("Cálculo de aluguel: " + r4.calcularAluguel());
-			RoupaController.incluir(r4);
+			roupaService.incluir(r4);
 		} catch (QtdDiasInvalidoException e) {
 			System.out.println("[ERROR - ROUPA] " + e.getMessage());
 		}

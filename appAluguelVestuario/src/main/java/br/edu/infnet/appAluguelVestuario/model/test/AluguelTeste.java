@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appAluguelVestuario.model.controller.AluguelController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
 import br.edu.infnet.appAluguelVestuario.model.domain.Aluguel;
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
@@ -23,10 +23,15 @@ import br.edu.infnet.appAluguelVestuario.model.domain.Vestuario;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.AluguelSemVestuarioException;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.ClienteNuloException;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.appAluguelVestuario.model.service.AluguelService;
 
 @Component
 @Order(1)
 public class AluguelTeste implements ApplicationRunner{
+	
+	@Autowired
+	private AluguelService aluguelService;
+		
 	@Override
 	public void run(ApplicationArguments args) {
 		System.out.println("#Inserindo Alugueis");
@@ -97,7 +102,7 @@ public class AluguelTeste implements ApplicationRunner{
 															Integer.parseInt(dataEvento[1]),
 															Integer.parseInt(dataEvento[2]),
 															19, 0));
-						AluguelController.incluir(a1);
+						aluguelService.incluir(a1);
 					} catch (CpfInvalidoException | ClienteNuloException | AluguelSemVestuarioException e) {
 						System.out.println("[ERROR - ALUGUEL] " + e.getMessage());
 					}

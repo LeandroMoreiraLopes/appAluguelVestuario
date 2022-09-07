@@ -6,18 +6,18 @@ public class Roupa extends Vestuario{
 	private String tamanho;
 	private String tipoDeTecido;
 	private boolean paraNoite;
-	
+
 	@Override
 	public double calcularAluguel() throws QtdDiasInvalidoException {
-		
+
 		if (getQtdDias() <= 0){
 			throw new QtdDiasInvalidoException("Impossível calcular com a quantidade de dias ("+getQtdDias()+") com valor menor ou igual a zero");
 		}
-		
-		double multiplicador = paraNoite ? 1.3d : 1d; 
+
+		double multiplicador = paraNoite ? 1.3d : 1d;
 		return getValorDoAluguel() * getQtdDias() * multiplicador;
 	}
-	
+
 	@Override
 	public String toString() {
 		return tamanho + ";" + tipoDeTecido + ";" + paraNoite + ";" + super.toString();
@@ -50,6 +50,6 @@ public class Roupa extends Vestuario{
 	@Override
 	public void impressao() {
 		System.out.println("#Roupa");
-		System.out.println(this);		
+		System.out.println(this);
 	}
 }

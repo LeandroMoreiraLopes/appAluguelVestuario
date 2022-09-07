@@ -1,19 +1,19 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
-import br.edu.infnet.appAluguelVestuario.model.interfaces.IPrinter;
+import br.edu.infnet.appAluguelVestuario.interfaces.IPrinter;
 
 public class Usuario implements IPrinter{
 	private String nome;
 	private String email;
 	private String senha;
-	
+
 	@Override
 	public void impressao() {
 		System.out.println("#Usuario");
-		System.out.println(this);	
+		System.out.println(this);
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		return nome + ";" + email + ";" + senha;

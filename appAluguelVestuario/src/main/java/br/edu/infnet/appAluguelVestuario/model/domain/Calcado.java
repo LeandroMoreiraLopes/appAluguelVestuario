@@ -6,18 +6,18 @@ public class Calcado extends Vestuario {
 	private int tamanho;
 	private String tipoDeSalto;
 	private String cor;
-	
+
 	@Override
 	public double calcularAluguel() throws TamanhoInvalidoException {
 		if (tamanho < 22) {
 			throw new TamanhoInvalidoException("Impossivel preencher calçado com tamanho menor que 22");
 		}
-		
+
 		double multiplicador = tamanho < 35 ? 0.8d : 1d;
-		
+
 		return getValorDoAluguel() * multiplicador;
 	}
-	
+
 	@Override
 	public String toString() {
 		return tamanho + ";" + tipoDeSalto + ";" + cor  + ";" + super.toString();
@@ -50,6 +50,6 @@ public class Calcado extends Vestuario {
 	@Override
 	public void impressao() {
 		System.out.println("#Calcado");
-		System.out.println(this);			
+		System.out.println(this);
 	}
 }

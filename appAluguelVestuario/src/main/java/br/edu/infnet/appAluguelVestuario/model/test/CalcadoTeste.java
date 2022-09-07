@@ -1,17 +1,22 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appAluguelVestuario.model.controller.CalcadoController;
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.TamanhoInvalidoException;
+import br.edu.infnet.appAluguelVestuario.model.service.CalcadoService;
 
 @Component
 @Order(4)
 public class CalcadoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private CalcadoService calcadoService;
+	
 	public void run(ApplicationArguments args) {
 		System.out.println("#Inserindo Calçados");
 
@@ -24,7 +29,7 @@ public class CalcadoTeste implements ApplicationRunner {
 			c1.setTipoDeSalto("Baixo");
 			c1.setCor("Preto");
 			System.out.println("Cálculo de aluguel: " + c1.calcularAluguel());
-			CalcadoController.incluir(c1);
+			calcadoService.incluir(c1);
 		} catch (TamanhoInvalidoException e) {
 			System.out.println("[ERROR - CALCADO] " + e.getMessage());
 		}
@@ -38,7 +43,7 @@ public class CalcadoTeste implements ApplicationRunner {
 			c2.setTipoDeSalto("Baixo");
 			c2.setCor("Preto");
 			System.out.println("Cálculo de aluguel: " + c2.calcularAluguel());
-			CalcadoController.incluir(c2);
+			calcadoService.incluir(c2);
 		} catch (TamanhoInvalidoException e) {
 			System.out.println("[ERROR - CALCADO] " + e.getMessage());
 		}
@@ -52,7 +57,7 @@ public class CalcadoTeste implements ApplicationRunner {
 			c3.setTipoDeSalto("15cm");
 			c3.setCor("Prata");
 			System.out.println("Cálculo de aluguel: " + c3.calcularAluguel());
-			CalcadoController.incluir(c3);
+			calcadoService.incluir(c3);
 		} catch (TamanhoInvalidoException e) {
 			System.out.println("[ERROR - CALCADO] " + e.getMessage());
 		}
@@ -66,7 +71,7 @@ public class CalcadoTeste implements ApplicationRunner {
 			c4.setTipoDeSalto("15cm");
 			c4.setCor("Prata");
 			System.out.println("Cálculo de aluguel: " + c4.calcularAluguel());
-			CalcadoController.incluir(c4);
+			calcadoService.incluir(c4);
 		} catch (TamanhoInvalidoException e) {
 			System.out.println("[ERROR - CALCADO] " + e.getMessage());
 		}
