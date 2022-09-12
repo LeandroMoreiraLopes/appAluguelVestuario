@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
+import br.edu.infnet.appAluguelVestuario.model.service.AppService;
 import br.edu.infnet.appAluguelVestuario.model.service.UsuarioService;
 
 @SessionAttributes("user")
@@ -21,8 +22,15 @@ public class AppController {
 	@Autowired
 	UsuarioService usuarioService;
 	
+	@Autowired
+	AppService appService;
+	
+		
 	@GetMapping(value = "/")
-	public String telaHome() {
+	public String telaHome(Model model) {
+		
+		model.addAttribute("projeto", appService.obterProjeto());
+		
 		return "home";
 	}
 	
