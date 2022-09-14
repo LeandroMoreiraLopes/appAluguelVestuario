@@ -57,4 +57,12 @@ public class Cliente implements IPrinter{
 	public LocalDateTime getDataNascimento() {
 		return dataNascimento;
 	}
+	
+	public void setDataNascimento(String data) {
+		String[] dataNasc = data.split("-");
+		dataNascimento = LocalDateTime.of(Integer.parseInt(dataNasc[2]),
+											Integer.parseInt(dataNasc[1]),
+											Integer.parseInt(dataNasc[0]),
+											0, 0);
+	}
 }

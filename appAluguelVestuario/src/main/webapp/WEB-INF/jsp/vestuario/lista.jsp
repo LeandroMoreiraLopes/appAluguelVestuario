@@ -21,31 +21,32 @@
 		<h2>Projeto de Gestão de Vestuário</h2>
 		<p>Aluguel de roupas, calçados e acessórios</p>
 		
-		<h3>Classe: Vestuario</h3>
+		<h3>Classe: Acessório</h3>
 		<table class="table">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Nome</th>
 					<th>Valor do aluguel</th>
 					<th>Quantidade de dias</th>
+					<th>Descrição</th>
+					<th>Tipo</th>
+					<th>Material</th>
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="a" items="${listagem}">
 				<tr class="success">
-					<td>Roupa</td>
-					<td>R$ 500,00 - 2000,00</td>
-					<td>1-7</td>
+					<td>${a.id}</td>
+					<td>${a.nome}</td>
+					<td>${a.valorDoAluguel}</td>
+					<td>${a.qtdDias}</td>
+					<td>${a.descricao}</td>
+					<td>${a.tipo}</td>
+					<td>${a.material}</td>
+					<td><a href="/acessorio/${a.id}/excluir">excluir</a></td>
 				</tr>
-				<tr class="info">
-					<td>Calçado</td>
-					<td>R$ 50,00-350</td>
-					<td>1-7</td>
-				</tr>
-				<tr class="warning">
-					<td>Acessório</td>
-					<td>R$ 10,00-300,00</td>
-					<td>1-3</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

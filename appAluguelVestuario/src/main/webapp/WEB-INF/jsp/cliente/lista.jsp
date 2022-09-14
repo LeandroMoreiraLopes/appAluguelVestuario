@@ -18,17 +18,18 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container">
-		<h2>Projeto de Gestão de Vestuário</h2>
-		<p>Aluguel de roupas, calçados e acessórios</p>
+		<h3>Cadastramento de clientes</h3>
 		
-		<h3>Classe: Cliente</h3>
+		<h4><a href="/cliente">Novo</a></h4>
+		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th>Id</th>
 					<th>Nome</th>
 					<th>CPF</th>
-					<th>Data de nascimento</th>
+					<th>Data de Nascimento</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>

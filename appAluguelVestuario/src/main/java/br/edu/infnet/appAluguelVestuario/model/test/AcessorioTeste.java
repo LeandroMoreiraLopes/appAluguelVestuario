@@ -1,5 +1,10 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,77 +22,45 @@ public class AcessorioTeste implements ApplicationRunner{
 	@Autowired
 	private AcessorioService acessorioService;
 	
-	public void run(ApplicationArguments args) {
+	public void run(ApplicationArguments args) throws DescricaoInvalidaException {
 		System.out.println("#Inserindo Acessórios");
-				
-		try {
-			Acessorio a1 = new Acessorio();
-			a1.setNome("Gucci N");
-			a1.setValorDoAluguel(30.0);
-			a1.setQtdDias(3);
-			a1.setDescricao("VX 1300");
-			a1.setTipo("Colar");
-			a1.setMaterial("Prata com brilhantes");
-			System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
-			acessorioService.incluir(a1);
-		} catch (DescricaoInvalidaException e) {
-			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
-		}
-				
-		try {
-			Acessorio a2 = new Acessorio();
-			a2.setNome("Ear GG");
-			a2.setValorDoAluguel(20.0);
-			a2.setQtdDias(2);
-			a2.setDescricao("AB longo");
-			a2.setTipo("Brincos");
-			a2.setMaterial("Prata");
-			System.out.println("Cálculo do aluguel: " + a2.calcularAluguel());
-			acessorioService.incluir(a2);
-		} catch (DescricaoInvalidaException e) {
-			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
-		}
-				
-		try {
-			Acessorio a3 = new Acessorio();
-			a3.setNome("WST");
-			a3.setValorDoAluguel(20.0);
-			a3.setQtdDias(1);
-			a3.setDescricao("PL 123");
-			a3.setTipo("Pulseira");
-			a3.setMaterial("Prata com brilhantes");
-			System.out.println("Cálculo do aluguel: " + a3.calcularAluguel());
-			acessorioService.incluir(a3);
-		} catch (DescricaoInvalidaException e) {
-			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
-		}	
+		
+		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
+		String arq = "acessorios.txt";
 		
 		try {
-			Acessorio a4 = new Acessorio();
-			a4.setNome("WTF");
-			a4.setValorDoAluguel(20.0);
-			a4.setQtdDias(1);
-			a4.setDescricao("");
-			a4.setTipo("Gargantilha");
-			a4.setMaterial("Couro Trançado");
-			System.out.println("Cálculo do aluguel: " + a4.calcularAluguel());
-			acessorioService.incluir(a4);
-		} catch (DescricaoInvalidaException e) {
-			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
-		}
-		
-		try {
-			Acessorio a5 = new Acessorio();
-			a5.setNome("WTF2");
-			a5.setValorDoAluguel(20.0);
-			a5.setQtdDias(1);
-			a5.setDescricao(null);
-			a5.setTipo("Tornoseleira");
-			a5.setMaterial("Couro");
-			System.out.println("Cálculo do aluguel: " + a5.calcularAluguel());
-			acessorioService.incluir(a5);
-		} catch (DescricaoInvalidaException e) {
-			System.out.println("[ERRO - ACESSORIO] " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha = leitura.readLine();
+				while(linha!= null){
+					
+					String[] campos = linha.split(";");
+											
+					Acessorio a1 = new Acessorio();
+					a1.setNome(campos[0]);
+					a1.setValorDoAluguel(Integer.valueOf(campos[1]));
+					a1.setQtdDias(Integer.valueOf(campos[2]));
+					a1.setDescricao(campos[3]);
+					a1.setTipo(campos[4]);
+					a1.setMaterial(campos[5]);
+					System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
+					acessorioService.incluir(a1);
+									
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe");
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo");
+			}
+			
+		} finally {
+			System.out.println("Arquivo de ACESSORIOS lido");
 		}
 	}
 }

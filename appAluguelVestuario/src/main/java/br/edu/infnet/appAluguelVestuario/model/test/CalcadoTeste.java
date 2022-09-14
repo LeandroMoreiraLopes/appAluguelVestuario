@@ -1,5 +1,10 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,63 +22,45 @@ public class CalcadoTeste implements ApplicationRunner {
 	@Autowired
 	private CalcadoService calcadoService;
 	
-	public void run(ApplicationArguments args) {
+	public void run(ApplicationArguments args) throws TamanhoInvalidoException {
 		System.out.println("#Inserindo Calçados");
 
-		try {
-			Calcado c1 = new Calcado();
-			c1.setNome("Mocassino");
-			c1.setValorDoAluguel(100.0);
-			c1.setQtdDias(1);
-			c1.setTamanho(38);
-			c1.setTipoDeSalto("Baixo");
-			c1.setCor("Preto");
-			System.out.println("Cálculo de aluguel: " + c1.calcularAluguel());
-			calcadoService.incluir(c1);
-		} catch (TamanhoInvalidoException e) {
-			System.out.println("[ERROR - CALCADO] " + e.getMessage());
-		}
-
-		try {
-			Calcado c2 = new Calcado();
-			c2.setNome("Bico quadrado");
-			c2.setValorDoAluguel(90.0);
-			c2.setQtdDias(2);
-			c2.setTamanho(41);
-			c2.setTipoDeSalto("Baixo");
-			c2.setCor("Preto");
-			System.out.println("Cálculo de aluguel: " + c2.calcularAluguel());
-			calcadoService.incluir(c2);
-		} catch (TamanhoInvalidoException e) {
-			System.out.println("[ERROR - CALCADO] " + e.getMessage());
-		}
+		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
+		String arq = "calcados.txt";
 		
 		try {
-			Calcado c3 = new Calcado();
-			c3.setNome("Scarpin");
-			c3.setValorDoAluguel(120.0);
-			c3.setQtdDias(3);
-			c3.setTamanho(34);
-			c3.setTipoDeSalto("15cm");
-			c3.setCor("Prata");
-			System.out.println("Cálculo de aluguel: " + c3.calcularAluguel());
-			calcadoService.incluir(c3);
-		} catch (TamanhoInvalidoException e) {
-			System.out.println("[ERROR - CALCADO] " + e.getMessage());
-		}
-		
-		try {
-			Calcado c4 = new Calcado();
-			c4.setNome("Havaiana");
-			c4.setValorDoAluguel(120.0);
-			c4.setQtdDias(3);
-			c4.setTamanho(20);
-			c4.setTipoDeSalto("15cm");
-			c4.setCor("Prata");
-			System.out.println("Cálculo de aluguel: " + c4.calcularAluguel());
-			calcadoService.incluir(c4);
-		} catch (TamanhoInvalidoException e) {
-			System.out.println("[ERROR - CALCADO] " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha = leitura.readLine();
+				while(linha!= null){
+					
+					String[] campos = linha.split(";");
+											
+					Calcado c1 = new Calcado();
+					c1.setNome(campos[0]);
+					c1.setValorDoAluguel(Integer.valueOf(campos[1]));
+					c1.setQtdDias(Integer.valueOf(campos[2]));
+					c1.setTamanho(Integer.valueOf(campos[3]));
+					c1.setTipoDeSalto(campos[4]);
+					c1.setCor(campos[5]);
+					System.out.println("Cálculo de aluguel: " + c1.calcularAluguel());
+					calcadoService.incluir(c1);
+									
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe");
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo");
+			}
+			
+		} finally {
+			System.out.println("Arquivo de CALCADOS lido");
 		}
 	}
 }

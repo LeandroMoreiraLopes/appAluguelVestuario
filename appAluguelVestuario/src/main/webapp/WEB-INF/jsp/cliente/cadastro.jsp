@@ -17,41 +17,25 @@
 	
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
-	<div class="container">
-		<h2>Projeto de Gestão de Vestuário</h2>
-		<p>Aluguel de roupas, calçados e acessórios</p>
-		
-		<h3>Classe: Acessório</h3>
-		
-		<h4><a href="/acessorio">Novo</a></h4>
-		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Valor do aluguel</th>
-					<th>Quantidade de dias</th>
-					<th>Descrição</th>
-					<th>Tipo</th>
-					<th>Material</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="a" items="${listagem}">
-				<tr class="success">
-					<td>${a.id}</td>
-					<td>${a.nome}</td>
-					<td>${a.valorDoAluguel}</td>
-					<td>${a.qtdDias}</td>
-					<td>${a.descricao}</td>
-					<td>${a.tipo}</td>
-					<td>${a.material}</td>
-					<td><a href="/acessorio/${a.id}/excluir">excluir</a></td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<div class="container mt-3">
+	  <h2>Cadastro de clientes</h2>
+	  <form action="/cliente/incluir" method="post">
+	    <div class="mb-3 mt-3">
+	      <label>Nome:</label>
+	      <input type="text" class="form-control" id="nome" placeholder="Entre com o nome" name="nome">
+	    </div>
+	    
+	    <div class="mb-3 mt-3">
+	      <label>CPF:</label>
+	      <input type="text" class="form-control" id="cpf" placeholder="Entre com o CPF" name="cpf">
+	    </div>
+	    
+	    <div class="mb-3">
+	      <label>Data de Nascimento:</label>
+	      <input type="text" class="form-control" id="dataNascimento" placeholder="Entre com a data de nascimento" name="dataNascimento">
+	    </div>
+	    <button type="submit" class="btn btn-primary">Incluir</button>
+	  </form>
 	</div>
 
 </body>

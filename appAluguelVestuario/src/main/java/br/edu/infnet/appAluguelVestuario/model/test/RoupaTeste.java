@@ -1,5 +1,10 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,63 +23,45 @@ public class RoupaTeste implements ApplicationRunner {
 	private RoupaService roupaService;
 	
 	@Override
-	public void run(ApplicationArguments args) {
+	public void run(ApplicationArguments args) throws QtdDiasInvalidoException {
 		System.out.println("#Inserindo Roupas");
 
-		try {
-			Roupa r1 = new Roupa();
-			r1.setNome("Paletó Summer");
-			r1.setValorDoAluguel(1600);
-			r1.setQtdDias(2);
-			r1.setTamanho("G");
-			r1.setTipoDeTecido("Poliéster");
-			r1.setParaNoite(false);
-			System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
-			roupaService.incluir(r1);
-		} catch (QtdDiasInvalidoException e) {
-			System.out.println("[ERROR - ROUPA] " + e.getMessage());
-		}
-
-		try {
-			Roupa r2 = new Roupa();
-			r2.setNome("Paletó Grafite");
-			r2.setValorDoAluguel(650);
-			r2.setQtdDias(3);
-			r2.setTamanho("M");
-			r2.setTipoDeTecido("Brim");
-			r2.setParaNoite(false);
-			System.out.println("Cálculo de aluguel: " + r2.calcularAluguel());
-			roupaService.incluir(r2);
-		} catch (QtdDiasInvalidoException e) {
-			System.out.println("[ERROR - ROUPA] " + e.getMessage());
-		}
-
-		try {
-			Roupa r3 = new Roupa();
-			r3.setNome("Vestido Floral");
-			r3.setValorDoAluguel(500);
-			r3.setQtdDias(1);
-			r3.setTamanho("P");
-			r3.setTipoDeTecido("Veludo");
-			r3.setParaNoite(true);
-			System.out.println("Cálculo de aluguel: " + r3.calcularAluguel());
-			roupaService.incluir(r3);
-		} catch (QtdDiasInvalidoException e) {
-			System.out.println("[ERROR - ROUPA] " + e.getMessage());
-		}
+		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
+		String arq = "roupas.txt";
 		
 		try {
-			Roupa r4 = new Roupa();
-			r4.setNome("Vestido com defeito");
-			r4.setValorDoAluguel(500);
-			r4.setQtdDias(0);
-			r4.setTamanho("P");
-			r4.setTipoDeTecido("Veludo");
-			r4.setParaNoite(true);
-			System.out.println("Cálculo de aluguel: " + r4.calcularAluguel());
-			roupaService.incluir(r4);
-		} catch (QtdDiasInvalidoException e) {
-			System.out.println("[ERROR - ROUPA] " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha = leitura.readLine();
+				while(linha!= null){
+					
+					String[] campos = linha.split(";");
+											
+					Roupa r1 = new Roupa();
+					r1.setNome(campos[0]);
+					r1.setValorDoAluguel(Integer.valueOf(campos[1]));
+					r1.setQtdDias(Integer.valueOf(campos[2]));
+					r1.setTamanho(campos[3]);
+					r1.setTipoDeTecido(campos[4]);
+					r1.setParaNoite(Boolean.valueOf(campos[5]));
+					System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
+					roupaService.incluir(r1);
+									
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe");
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo");
+			}
+			
+		} finally {
+			System.out.println("Arquivo de ROUPAS lido");
 		}
 	}
 }

@@ -1,5 +1,9 @@
 package br.edu.infnet.appAluguelVestuario.model.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,43 +23,49 @@ public class ClienteTeste implements ApplicationRunner{
 	@Autowired
 	private ClienteService clienteService;
 	
+	private Cliente cliente;
+	
 	@Override
-	public void run(ApplicationArguments args) {
+	public void run(ApplicationArguments args) throws NumberFormatException, CpfInvalidoException {
 		System.out.println("#Inserindo Clientes");
 		
-		try {
-			Cliente c1 = new Cliente("Leandro", "11111111111", LocalDateTime.of(1981, 9, 9, 0, 0));
-			clienteService.incluir(c1);			
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-		}
+		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
+		String arq = "clientes.txt";
 		
 		try {
-			Cliente c2 = new Cliente("Gabriel", "22222222222", LocalDateTime.of(2007, 10, 01, 0, 0));
-			clienteService.incluir(c2);			
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-		}
-		
-		try {
-			Cliente c3 = new Cliente("Enilda", "33333333333", LocalDateTime.of(1948, 10, 11, 0, 0));
-			clienteService.incluir(c3);			
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR] " + e.getMessage());
-		}
-		
-		try {
-			Cliente c4 = new Cliente("João", null, LocalDateTime.of(1950, 1, 1, 0, 0));
-			clienteService.incluir(c4);			
-		} catch (Exception e) {
-			System.out.println("[ERROR] " + e.getMessage());
-		}
-		
-		try {
-			Cliente c5 = new Cliente("Maria", "", LocalDateTime.of(1960, 1, 1, 0, 0));
-			clienteService.incluir(c5);			
-		} catch (Exception e) {
-			System.out.println("[ERROR] " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha = leitura.readLine();
+				while(linha!= null){
+					
+					String[] campos = linha.split(";");
+					String[] data = campos[2].split("-");
+											
+					cliente = new Cliente(campos[0],
+											campos[1],
+											LocalDateTime.of(Integer.parseInt(data[2]),
+															Integer.parseInt(data[1]),
+															Integer.parseInt(data[0]),
+															0, 0));
+
+					
+					clienteService.incluir(cliente);
+									
+					linha = leitura.readLine();
+				}
+				
+				leitura.close();
+				fileReader.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe");
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema no fechamento do arquivo");
+			}
+			
+		} finally {
+			System.out.println("Arquivo de CLIENTES lido");
 		}
 	}	
 }

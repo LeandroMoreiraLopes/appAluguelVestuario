@@ -4,22 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appAluguelVestuario.model.domain.Aluguel;
-import br.edu.infnet.appAluguelVestuario.model.domain.Cliente;
 import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
-import br.edu.infnet.appAluguelVestuario.model.domain.Vestuario;
-import br.edu.infnet.appAluguelVestuario.model.exceptions.AluguelSemVestuarioException;
-import br.edu.infnet.appAluguelVestuario.model.exceptions.ClienteNuloException;
-import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.appAluguelVestuario.model.service.UsuarioService;
 
 @Component

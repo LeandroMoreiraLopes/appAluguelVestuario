@@ -18,18 +18,32 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container mt-3">
-	  <h2>Autenticação</h2>
-	  <form action="/login" method="post">
+	  <h2>Cadastro de Roupas</h2>
+	  <form action="/roupa/incluir" method="post">
+	    <c:import url="/WEB-INF/jsp/vestuario/cadastro.jsp"/>
+	    
 	    <div class="mb-3 mt-3">
-	      <label for="email">Email:</label>
-	      <input type="email" class="form-control" id="email" placeholder="Entre com o seu email" name="email">
+	      <label>Tamanho:</label>
+	      <input type="text" class="form-control" id="tamanho" placeholder="Entre com o tamanho da roupa" name="tamanho">
 	    </div>
 	    
 	    <div class="mb-3">
-	      <label for="pwd">Password:</label>
-	      <input type="password" class="form-control" id="pwd" placeholder="Entre com sua senha" name="senha">
+	      <label>Tipo de tecido:</label>
+	      <input type="text" class="form-control" id="tipoDeTecido" placeholder="Entre com o tipo de tecido" name="tipoDeTecido">
 	    </div>
-	    <button type="submit" class="btn btn-primary">Login</button>
+	    
+	    <div class="mb-3">
+	      <label>Sugestão de horário:</label>
+		    <label class="radio-inline">
+		    	<input type="radio" name="paraNoite" value="true" checked> Para noite
+		    </label>
+		    
+		    <label class="radio-inline">
+		    	<input type="radio" name="paraNoite" value="false"> Para dia
+		    </label>
+	    </div>
+	    
+	    <button type="submit" class="btn btn-primary">Incluir</button>
 	  </form>
 	</div>
 
