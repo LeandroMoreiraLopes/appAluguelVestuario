@@ -22,11 +22,12 @@ public class AcessorioTeste implements ApplicationRunner{
 	@Autowired
 	private AcessorioService acessorioService;
 	
+	@Override
 	public void run(ApplicationArguments args) throws DescricaoInvalidaException {
 		System.out.println("#Inserindo Acessórios");
 		
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
-		String arq = "acessorios.txt";
+		String arq = "vestuarios.txt";
 		
 		try {
 			try {
@@ -37,17 +38,19 @@ public class AcessorioTeste implements ApplicationRunner{
 				while(linha!= null){
 					
 					String[] campos = linha.split(";");
-											
-					Acessorio a1 = new Acessorio();
-					a1.setNome(campos[0]);
-					a1.setValorDoAluguel(Integer.valueOf(campos[1]));
-					a1.setQtdDias(Integer.valueOf(campos[2]));
-					a1.setDescricao(campos[3]);
-					a1.setTipo(campos[4]);
-					a1.setMaterial(campos[5]);
-					System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
-					acessorioService.incluir(a1);
-									
+					
+					if(campos[0].equalsIgnoreCase("A"))
+					{
+						Acessorio a1 = new Acessorio();
+						a1.setNome(campos[1]);
+						a1.setValorDoAluguel(Integer.valueOf(campos[2]));
+						a1.setQtdDias(Integer.valueOf(campos[3]));
+						a1.setDescricao(campos[4]);
+						a1.setTipo(campos[5]);
+						a1.setMaterial(campos[6]);
+						System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
+						acessorioService.incluir(a1);
+					}			
 					linha = leitura.readLine();
 				}
 				

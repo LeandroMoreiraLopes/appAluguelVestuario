@@ -22,6 +22,9 @@
 		<p>Aluguel de roupas, calçados e acessórios</p>
 		
 		<h3>Classe: Aluguel</h3>
+		
+		<h4><a href="/aluguel">Novo</a></h4>
+		
 		<table class="table">
 			<thead>
 				<tr>

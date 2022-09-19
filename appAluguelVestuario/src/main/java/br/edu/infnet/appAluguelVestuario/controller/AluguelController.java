@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.appAluguelVestuario.model.service.AluguelService;
+import br.edu.infnet.appAluguelVestuario.model.service.ClienteService;
+import br.edu.infnet.appAluguelVestuario.model.service.VestuarioService;
 
 @Controller
 public class AluguelController {
@@ -14,12 +17,34 @@ public class AluguelController {
 	@Autowired
 	private AluguelService aluguelService;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
+	@Autowired
+	private VestuarioService vestuarioService;
+	
+	@GetMapping(value = "/aluguel")
+	public String telaCadastro(Model model) {
+		
+		model.addAttribute("clientes", clienteService.obterLista());
+		model.addAttribute("vestuarios", vestuarioService.obterLista());
+		
+		return "aluguel/cadastro";
+	}
+	
 	@GetMapping(value = "/aluguel/lista")
 	public String telaLista(Model model) {
 		
 		model.addAttribute("listagem", aluguelService.obterLista());
 		
 		return "aluguel/lista";
+	}
+	
+	@PostMapping(value = "/aluguel/incluir")
+	public String incluir(){
+		
+		
+		return "redirect:/aluguel/lista";
 	}
 	
 	@GetMapping(value = "/aluguel/{id}/excluir")

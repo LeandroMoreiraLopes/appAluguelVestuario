@@ -2,15 +2,31 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Entity;
+
 import br.edu.infnet.appAluguelVestuario.interfaces.IPrinter;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 
+@Entity
+@Table(name = "TCliente")
 public class Cliente implements IPrinter{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String cpf;
 	private LocalDateTime dataNascimento;
 
+	public Cliente() {
+		
+	}
+	
 	public Cliente(String nome, String cpf, LocalDateTime dataNascimento) throws CpfInvalidoException
 	{
 		if (cpf == null) {

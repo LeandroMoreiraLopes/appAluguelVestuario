@@ -27,7 +27,7 @@ public class RoupaTeste implements ApplicationRunner {
 		System.out.println("#Inserindo Roupas");
 
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
-		String arq = "roupas.txt";
+		String arq = "vestuarios.txt";
 		
 		try {
 			try {
@@ -38,16 +38,19 @@ public class RoupaTeste implements ApplicationRunner {
 				while(linha!= null){
 					
 					String[] campos = linha.split(";");
-											
-					Roupa r1 = new Roupa();
-					r1.setNome(campos[0]);
-					r1.setValorDoAluguel(Integer.valueOf(campos[1]));
-					r1.setQtdDias(Integer.valueOf(campos[2]));
-					r1.setTamanho(campos[3]);
-					r1.setTipoDeTecido(campos[4]);
-					r1.setParaNoite(Boolean.valueOf(campos[5]));
-					System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
-					roupaService.incluir(r1);
+							
+					if(campos[0].equalsIgnoreCase("R"))
+					{
+						Roupa r1 = new Roupa();
+						r1.setNome(campos[1]);
+						r1.setValorDoAluguel(Integer.valueOf(campos[2]));
+						r1.setQtdDias(Integer.valueOf(campos[3]));
+						r1.setTamanho(campos[4]);
+						r1.setTipoDeTecido(campos[5]);
+						r1.setParaNoite(Boolean.valueOf(campos[6]));
+						System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
+						roupaService.incluir(r1);
+					}
 									
 					linha = leitura.readLine();
 				}

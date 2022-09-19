@@ -21,13 +21,13 @@ public class Aluguel implements IPrinter{
 			throw new ClienteNuloException("Impossível criar um aluguel sem cliente");
 		}
 
-		if (listaVestuario == null) {
-			throw new AluguelSemVestuarioException("Impossível criar um aluguel com vestuário nulo");
-		}
-
-		else if (listaVestuario.size() <= 0) {
-			throw new AluguelSemVestuarioException("Impossível criar um aluguel sem vestuários");
-		}
+//		if (listaVestuario == null) {
+//			throw new AluguelSemVestuarioException("Impossível criar um aluguel com vestuário nulo");
+//		}
+//
+//		else if (listaVestuario.size() <= 0) {
+//			throw new AluguelSemVestuarioException("Impossível criar um aluguel sem vestuários");
+//		}
 
 		this.cliente  = cliente;
 		this.listaVestuario = listaVestuario;
