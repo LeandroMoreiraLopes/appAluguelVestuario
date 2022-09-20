@@ -1,8 +1,6 @@
 package br.edu.infnet.appAluguelVestuario.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +14,8 @@ public class RoupaService {
 	@Autowired
 	private RoupaRepository roupaRepository;
 	
-	private static Map<Integer, Roupa> mapaRoupa = new HashMap<Integer, Roupa>();
-	private static Integer id = 1;
+	//private static Map<Integer, Roupa> mapaRoupa = new HashMap<Integer, Roupa>();
+	//private static Integer id = 1;
 	
 	public void incluir(Roupa roupa)	{
 		
