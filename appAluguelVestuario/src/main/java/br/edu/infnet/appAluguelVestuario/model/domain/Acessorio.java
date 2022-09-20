@@ -1,7 +1,12 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.appAluguelVestuario.model.exceptions.DescricaoInvalidaException;
 
+@Entity
+@Table(name = "TAcessorio")
 public class Acessorio extends Vestuario{
 	private String descricao;
 	private String tipo;

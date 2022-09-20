@@ -1,7 +1,12 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.appAluguelVestuario.model.exceptions.QtdDiasInvalidoException;
 
+@Entity
+@Table(name = "TRoupa")
 public class Roupa extends Vestuario{
 	private String tamanho;
 	private String tipoDeTecido;

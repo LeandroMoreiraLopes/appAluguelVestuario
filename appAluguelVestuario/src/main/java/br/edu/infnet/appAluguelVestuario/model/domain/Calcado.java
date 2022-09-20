@@ -1,7 +1,12 @@
 package br.edu.infnet.appAluguelVestuario.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.appAluguelVestuario.model.exceptions.TamanhoInvalidoException;
 
+@Entity
+@Table(name = "TCalcado")
 public class Calcado extends Vestuario {
 	private int tamanho;
 	private String tipoDeSalto;

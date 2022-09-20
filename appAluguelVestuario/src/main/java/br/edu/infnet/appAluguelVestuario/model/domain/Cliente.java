@@ -2,18 +2,19 @@ package br.edu.infnet.appAluguelVestuario.model.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Entity;
 
 import br.edu.infnet.appAluguelVestuario.interfaces.IPrinter;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 
 @Entity
-@Table(name = "TCliente")
+@Table(name = "tcliente")
 public class Cliente implements IPrinter{
 	
 	@Id
@@ -22,10 +23,11 @@ public class Cliente implements IPrinter{
 	private String nome;
 	private String cpf;
 	private LocalDateTime dataNascimento;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 
-	public Cliente() {
-		
-	}
+	public Cliente() {	}
 	
 	public Cliente(String nome, String cpf, LocalDateTime dataNascimento) throws CpfInvalidoException
 	{
@@ -80,5 +82,13 @@ public class Cliente implements IPrinter{
 											Integer.parseInt(dataNasc[1]),
 											Integer.parseInt(dataNasc[0]),
 											0, 0);
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

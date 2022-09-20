@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Cliente;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.appAluguelVestuario.model.service.ClienteService;
 
@@ -32,6 +33,12 @@ public class ClienteTeste implements ApplicationRunner{
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
 		String arq = "clientes.txt";
 		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		usuario.setEmail("admin@admin.com");
+		usuario.setNome("Administrador");
+		usuario.setSenha("123");
+		
 		try {
 			try {
 				FileReader fileReader = new FileReader(dir+arq);
@@ -50,7 +57,7 @@ public class ClienteTeste implements ApplicationRunner{
 															Integer.parseInt(data[0]),
 															0, 0));
 
-					
+					cliente.setUsuario(usuario);
 					clienteService.incluir(cliente);
 									
 					linha = leitura.readLine();
