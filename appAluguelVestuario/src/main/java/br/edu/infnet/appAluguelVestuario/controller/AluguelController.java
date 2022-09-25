@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.service.AluguelService;
 import br.edu.infnet.appAluguelVestuario.model.service.ClienteService;
 import br.edu.infnet.appAluguelVestuario.model.service.VestuarioService;
@@ -24,10 +26,10 @@ public class AluguelController {
 	private VestuarioService vestuarioService;
 	
 	@GetMapping(value = "/aluguel")
-	public String telaCadastro(Model model) {
+	public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("clientes", clienteService.obterLista());
-		model.addAttribute("vestuarios", vestuarioService.obterLista());
+		model.addAttribute("clientes", clienteService.obterLista(usuario));
+		model.addAttribute("vestuarios", vestuarioService.obterLista(usuario));
 		
 		return "aluguel/cadastro";
 	}

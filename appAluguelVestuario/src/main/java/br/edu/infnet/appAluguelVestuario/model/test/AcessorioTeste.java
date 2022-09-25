@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.DescricaoInvalidaException;
 import br.edu.infnet.appAluguelVestuario.model.service.AcessorioService;
 
@@ -25,6 +26,9 @@ public class AcessorioTeste implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws DescricaoInvalidaException {
 		System.out.println("#Inserindo Acessórios");
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
 		
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
 		String arq = "vestuarios.txt";
@@ -48,6 +52,7 @@ public class AcessorioTeste implements ApplicationRunner{
 						a1.setDescricao(campos[4]);
 						a1.setTipo(campos[5]);
 						a1.setMaterial(campos[6]);
+						a1.setUsuario(usuario);
 						System.out.println("Cálculo do aluguel: " + a1.calcularAluguel());
 						acessorioService.incluir(a1);
 					}			

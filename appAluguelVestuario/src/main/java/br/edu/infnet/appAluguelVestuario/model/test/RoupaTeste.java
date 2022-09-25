@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Roupa;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.QtdDiasInvalidoException;
 import br.edu.infnet.appAluguelVestuario.model.service.RoupaService;
 
@@ -26,6 +27,9 @@ public class RoupaTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws QtdDiasInvalidoException {
 		System.out.println("#Inserindo Roupas");
 
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
 		String arq = "vestuarios.txt";
 		
@@ -48,6 +52,7 @@ public class RoupaTeste implements ApplicationRunner {
 						r1.setTamanho(campos[4]);
 						r1.setTipoDeTecido(campos[5]);
 						r1.setParaNoite(Boolean.valueOf(campos[6]));
+						r1.setUsuario(usuario);
 						System.out.println("Cálculo de aluguel: " + r1.calcularAluguel());
 						roupaService.incluir(r1);
 					}

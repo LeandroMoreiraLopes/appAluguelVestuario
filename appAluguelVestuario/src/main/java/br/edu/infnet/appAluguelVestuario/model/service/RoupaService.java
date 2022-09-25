@@ -1,11 +1,13 @@
 package br.edu.infnet.appAluguelVestuario.model.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Roupa;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.repository.RoupaRepository;
 import br.edu.infnet.appAluguelVestuario.model.test.AppImpressao;
 
@@ -33,8 +35,16 @@ public class RoupaService {
 		//return mapaRoupa.values();
 	}
 	
+	public Collection<Roupa> obterLista(Usuario usuario){
+		return (Collection<Roupa>)roupaRepository.findAll(usuario.getId());
+	}
+	
 	public void excluir(Integer id) {
 		roupaRepository.deleteById(id);
 		//mapaRoupa.remove(id);
+	}
+	
+	public Collection<Roupa> loadRoupas(Integer id) {
+		return (Collection<Roupa>)roupaRepository.find(id);
 	}
 }

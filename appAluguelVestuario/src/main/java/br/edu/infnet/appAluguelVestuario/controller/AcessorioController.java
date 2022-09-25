@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.service.AcessorioService;
 
 @Controller
@@ -17,9 +19,9 @@ public class AcessorioController {
 	private AcessorioService acessorioService;
 	
 	@GetMapping(value = "/acessorio/lista")
-	public String telaLista(Model model) {
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("listagem", acessorioService.obterLista());
+		model.addAttribute("listagem", acessorioService.obterLista(usuario));
 		
 		return "acessorio/lista";
 	}
@@ -31,7 +33,9 @@ public class AcessorioController {
 	}
 	
 	@PostMapping(value = "/acessorio/incluir")
-	public String incluir(Acessorio acessorio){
+	public String incluir(Acessorio acessorio, @SessionAttribute("user") Usuario usuario){
+		
+		acessorio.setUsuario(usuario);
 		
 		acessorioService.incluir(acessorio);
 		

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Acessorio;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.repository.AcessorioRepository;
 import br.edu.infnet.appAluguelVestuario.model.test.AppImpressao;
 
@@ -30,6 +31,12 @@ public class AcessorioService {
 	
 	public Collection<Acessorio> obterLista(){
 		return (Collection<Acessorio>) acessorioRepository.findAll();
+		
+		//return mapaAcessorio.values();
+	}
+	
+	public Collection<Acessorio> obterLista(Usuario usuario){
+		return (Collection<Acessorio>) acessorioRepository.findAll(usuario.getId());
 		
 		//return mapaAcessorio.values();
 	}

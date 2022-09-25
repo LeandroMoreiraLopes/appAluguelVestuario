@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.TamanhoInvalidoException;
 import br.edu.infnet.appAluguelVestuario.model.service.CalcadoService;
 
@@ -26,6 +27,9 @@ public class CalcadoTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws TamanhoInvalidoException {
 		System.out.println("#Inserindo Calçados");
 
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		String dir = "C:/Users/llopes/Desktop/Pós MIT Eng de Software/workspace/appAluguelVestuario/appAluguelVestuario/src/main/resources/";
 		String arq = "vestuarios.txt";
 		
@@ -48,6 +52,7 @@ public class CalcadoTeste implements ApplicationRunner {
 						c1.setTamanho(Integer.valueOf(campos[4]));
 						c1.setTipoDeSalto(campos[5]);
 						c1.setCor(campos[6]);
+						c1.setUsuario(usuario);
 						System.out.println("Cálculo de aluguel: " + c1.calcularAluguel());
 						calcadoService.incluir(c1);
 					}			

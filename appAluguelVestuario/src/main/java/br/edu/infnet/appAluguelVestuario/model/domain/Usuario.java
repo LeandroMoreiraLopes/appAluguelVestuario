@@ -25,6 +25,12 @@ public class Usuario implements IPrinter{
 	@OneToMany
 	@JoinColumn(name = "idUsuario")
 	private List<Cliente> clientes;
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Vestuario> vestuarios;
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Aluguel> alugueis;
 
 	@Override
 	public void impressao() {
@@ -36,7 +42,6 @@ public class Usuario implements IPrinter{
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -46,31 +51,25 @@ public class Usuario implements IPrinter{
 		return nome + ";" + email + ";" + senha;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public String getSenha() {
 		return senha;
 	}
-
 
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -82,5 +81,21 @@ public class Usuario implements IPrinter{
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
+	}
+
+	public List<Vestuario> getVestuarios() {
+		return vestuarios;
+	}
+
+	public void setVestuarios(List<Vestuario> vestuarios) {
+		this.vestuarios = vestuarios;
+	}
+
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
+
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
 	}
 }

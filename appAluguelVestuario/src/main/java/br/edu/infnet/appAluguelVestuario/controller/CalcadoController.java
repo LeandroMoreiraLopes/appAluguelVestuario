@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.service.CalcadoService;
 
 @Controller
@@ -17,9 +19,9 @@ public class CalcadoController {
 	private CalcadoService calcadoService;
 	
 	@GetMapping(value = "/calcado/lista")
-	public String telaLista(Model model) {
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("listagem", calcadoService.obterLista());
+		model.addAttribute("listagem", calcadoService.obterLista(usuario));
 		
 		return "calcado/lista";
 	}
@@ -31,7 +33,9 @@ public class CalcadoController {
 	}
 	
 	@PostMapping(value = "/calcado/incluir")
-	public String incluir(Calcado calcado){
+	public String incluir(Calcado calcado, @SessionAttribute("user") Usuario usuario){
+		
+		calcado.setUsuario(usuario);
 		
 		calcadoService.incluir(calcado);
 		

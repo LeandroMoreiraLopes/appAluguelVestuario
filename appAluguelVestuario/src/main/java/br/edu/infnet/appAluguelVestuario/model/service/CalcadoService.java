@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appAluguelVestuario.model.domain.Calcado;
+import br.edu.infnet.appAluguelVestuario.model.domain.Usuario;
 import br.edu.infnet.appAluguelVestuario.model.repository.CalcadoRepository;
 import br.edu.infnet.appAluguelVestuario.model.test.AppImpressao;
 
@@ -32,6 +33,10 @@ public class CalcadoService {
 		return (Collection<Calcado>)calcadoRepository.findAll();
 		
 		//return mapaCalcado.values();
+	}
+	
+	public Collection<Calcado> obterLista(Usuario usuario){
+		return (Collection<Calcado>)calcadoRepository.findAll(usuario.getId());
 	}
 	
 	public void excluir(Integer id) {
