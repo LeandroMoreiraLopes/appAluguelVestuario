@@ -14,7 +14,7 @@ import br.edu.infnet.appAluguelVestuario.interfaces.IPrinter;
 import br.edu.infnet.appAluguelVestuario.model.exceptions.CpfInvalidoException;
 
 @Entity
-@Table(name = "tcliente")
+@Table(name = "TCliente")
 public class Cliente implements IPrinter{
 	
 	@Id
@@ -67,9 +67,17 @@ public class Cliente implements IPrinter{
 	public String getNome() {
 		return nome;
 	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public String getCpf() {
 		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public LocalDateTime getDataNascimento() {

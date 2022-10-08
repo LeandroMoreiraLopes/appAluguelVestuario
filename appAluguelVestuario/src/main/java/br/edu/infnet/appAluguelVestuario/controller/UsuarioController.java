@@ -39,8 +39,12 @@ public class UsuarioController {
 	@GetMapping(value = "/usuario/{email}/excluir")
 	public String excluir(@PathVariable String email){
 		
-		usuarioService.excluir(email);
-		
+		try {
+			usuarioService.excluir(email);
+		} catch (Exception e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
+			
 		return "redirect:/usuario/lista";
 	}
 }

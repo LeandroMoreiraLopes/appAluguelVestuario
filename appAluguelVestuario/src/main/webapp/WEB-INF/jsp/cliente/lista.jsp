@@ -18,6 +18,12 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container">
+		<c:if test="${not empty mensagem}">
+			<div class="alert ${tipo}">
+				<strong>Informação</strong> ${mensagem}
+			</div>
+		</c:if>
+	
 		<h3>Cadastramento de clientes</h3>
 		
 		<h4><a href="/cliente">Novo</a></h4>

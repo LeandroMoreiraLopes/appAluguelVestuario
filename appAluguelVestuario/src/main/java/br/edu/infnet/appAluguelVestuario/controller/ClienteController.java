@@ -18,10 +18,16 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 	
+	private String mensagem;
+	private String tipo;
+	
 	@GetMapping(value = "/cliente/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario user) {
 		
 		model.addAttribute("listagem", clienteService.obterLista(user));
+		
+		model.addAttribute("mensagem", mensagem);
+		model.addAttribute("tipo", tipo);
 		
 		return "cliente/lista";
 	}
@@ -33,19 +39,28 @@ public class ClienteController {
 	}
 	
 	@PostMapping(value = "/cliente/incluir")
-	public String incluir(Cliente cliente, @SessionAttribute("user") Usuario usuario)
-	{
+	public String incluir(Cliente cliente, @SessionAttribute("user") Usuario usuario){
 		cliente.setUsuario(usuario);
 		
 		clienteService.incluir(cliente);
+		
+		mensagem = "Inclusão do cliente " + cliente.getNome() + " realizada com sucesso!";
+		tipo = "alert-success";
 		return "redirect:/cliente/lista";
 	}
 	
 	@GetMapping(value = "/cliente/{id}/excluir")
 	public String excluir(@PathVariable Integer id){
 		
-		clienteService.excluir(id);
-		
+		try {
+			clienteService.excluir(id);
+			
+			mensagem = "Exclusão do cliente " + id + " realizada com sucesso!";
+			tipo = "alert-success";
+		} catch (Exception e) {
+			mensagem = "Impossível realizar exclusão do cliente " + id + "!";
+			tipo = "alert-danger";
+		}	
 		return "redirect:/cliente/lista";
 	}
 

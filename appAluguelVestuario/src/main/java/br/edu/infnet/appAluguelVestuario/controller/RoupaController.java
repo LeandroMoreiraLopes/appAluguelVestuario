@@ -44,9 +44,12 @@ public class RoupaController {
 	
 	@GetMapping(value = "/roupa/{id}/excluir")
 	public String excluir(@PathVariable Integer id){
-		
-		roupaService.excluir(id);
-		
+		try {
+			roupaService.excluir(id);
+		} catch (Exception e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
+			
 		return "redirect:/roupa/lista";
 	}
 }

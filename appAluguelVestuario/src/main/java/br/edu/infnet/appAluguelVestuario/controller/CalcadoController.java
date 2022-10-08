@@ -44,9 +44,12 @@ public class CalcadoController {
 	
 	@GetMapping(value = "/calcado/{id}/excluir")
 	public String excluir(@PathVariable Integer id){
-		
-		calcadoService.excluir(id);
-		
+		try {
+			calcadoService.excluir(id);
+		} catch (Exception e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
+				
 		return "redirect:/calcado/lista";
 	}
 }

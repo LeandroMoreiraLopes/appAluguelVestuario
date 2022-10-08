@@ -45,8 +45,12 @@ public class AcessorioController {
 	@GetMapping(value = "/acessorio/{id}/excluir")
 	public String excluir(@PathVariable Integer id){
 		
-		acessorioService.excluir(id);
-		
+		try {
+			acessorioService.excluir(id);
+		} catch (Exception e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
+			
 		return "redirect:/acessorio/lista";
 	}
 }

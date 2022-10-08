@@ -37,10 +37,12 @@ public class Aluguel implements IPrinter{
 	private Usuario usuario;
 
 	public Aluguel() {
+		dataEvento = LocalDateTime.now();
 	}
 
 	public Aluguel(Cliente cliente, Set<Vestuario> listaVestuario) throws ClienteNuloException, AluguelSemVestuarioException{
-
+		this();
+		
 		if (cliente == null) {
 			throw new ClienteNuloException("Impossível criar um aluguel sem cliente");
 		}

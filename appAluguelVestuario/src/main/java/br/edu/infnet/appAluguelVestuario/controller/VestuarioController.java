@@ -26,9 +26,12 @@ public class VestuarioController {
 	
 	@GetMapping(value = "/vestuario/{id}/excluir")
 	public String excluir(@PathVariable Integer id){
-		
-		vestuarioService.excluir(id);
-		
+		try {
+			vestuarioService.excluir(id);
+		} catch (Exception e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
+			
 		return "redirect:/vestuario/lista";
 	}
 
